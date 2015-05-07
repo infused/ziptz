@@ -17,10 +17,8 @@ task :console do
   sh "irb -rubygems -I lib -r ziptz.rb"
 end
 
-
 desc 'Create ziptz.yml from zipcodes database'
 task :create_ziptz do
-  require 'yaml'
   require 'active_record'
 
   db_config = YAML::load(File.open('database.yml'))
@@ -41,39 +39,13 @@ task :create_ziptz do
     data[zip.zip_code] ||= zip.time_zone
   end
 
-  puts "Writing ziptz.yml"
+  puts "Writing ziptz.data"
 
-  File.open('ziptz.yml', 'w') do |f|
-    f.write data.to_yaml
+  lines = data.map {|k, v| "#{k}=#{v}"}
+  lines.sort!
+
+  File.open('ziptz.data', 'w') do |f|
+    lines.each {|line| f.puts line}
   end
-
-
-  # found = []
-  #
-  # data = {}
-  # 0.upto(99999) do |n|
-  #   s = n.to_s
-  #   unless found.include?(s)
-  #     zips = ZipCode.select('ZipCode, TimeZone').where(['ZipCode LIKE ?', "#{s}%"])
-  #     puts "#{n}:#{zips.first.time_zone}"
-  #
-  #
-  #
-  #
-  #     # if !zips.empty? && zips.all? {|zip| zip.time_zone == zips.first.time_zone}
-  #     #   puts 'wha!?'
-  #     #   (s.size + 1).upto(5) do |x|
-  #     #     found = found + (s.ljust(x, '0')..s.ljust(x, '9')).to_a
-  #     #   end
-  #     #
-  #     #   puts found
-  #     #
-  #     #   # if n == 104
-  #     #   #   binding.pry
-  #     #   # end
-  #     #
-  #     # end
-  #   end
-  # end
 
 end
