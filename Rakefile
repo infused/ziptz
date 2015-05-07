@@ -22,8 +22,6 @@ desc 'Create ziptz.yml from zipcodes database'
 task :create_ziptz do
   require 'yaml'
   require 'active_record'
-  require 'pry'
-  require 'json'
 
   db_config = YAML::load(File.open('database.yml'))
   ActiveRecord::Base.establish_connection(db_config)
