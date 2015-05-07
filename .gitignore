@@ -1,4 +1,4 @@
 .ruby-version
 .ruby-gemset
+database.yml
 Gemfile.lock
-
