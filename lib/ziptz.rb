@@ -2,12 +2,7 @@ require 'yaml'
 
 class Ziptz
   def initialize
-    @zips = {}
-
-    File.foreach(data_path) do |line|
-      zip, tz = line.split('=')
-      @zips[zip.strip] = tz.strip
-    end
+    load_data
   end
 
   def time_zone(zip)
@@ -23,5 +18,13 @@ class Ziptz
 
   def data_path
     File.join(File.dirname(__FILE__), '..', 'ziptz.data')
+  end
+
+  def load_data
+    @zips = {}
+    File.foreach(data_path).inject do |zips, line|
+      zip, tz = line.split('=').map { |s| s.strip }
+      @zips[zip] = tz
+    end
   end
 end
