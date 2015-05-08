@@ -2,9 +2,9 @@ require 'yaml'
 
 class Ziptz
   def initialize
-    path = File.join(File.dirname(__FILE__), '..', 'ziptz.data')
-
     @zips = {}
+
+    path = File.join(File.dirname(__FILE__), '..', 'ziptz.data')
     File.foreach(path) do |line|
       zip, tz = line.split('=')
       @zips[zip.strip] = tz.strip
