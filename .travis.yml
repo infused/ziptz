@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+  - 2.2.0
+  - 2.1.5
+  - 2.0.0
+  - jruby-head
+  - rbx
+branches:
+  only:
+    - master
+git:
+  depth: 150
+bundler_args: --without development
+script: bundle exec rspec -fdoc
+gemfile: Gemfile.travis
+addons:
+  code_climate:
+    repo_token:
