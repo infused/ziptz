@@ -2,7 +2,7 @@ require 'yaml'
 
 class Ziptz
   def initialize
-    load_data
+    @zips = load_data
   end
 
   def time_zone(zip)
@@ -10,7 +10,7 @@ class Ziptz
   end
 
   def zips(tz)
-    selected = @zips.select {|_, v| v == tz.to_s}
+    selected = @zips.select { |_, v| v == tz.to_s }
     selected.keys.sort
   end
 
@@ -21,10 +21,11 @@ class Ziptz
   end
 
   def load_data
-    @zips = {}
-    File.foreach(data_path).inject do |zips, line|
+    zips = {}
+    File.foreach(data_path) do |line|
       zip, tz = line.split('=').map { |s| s.strip }
-      @zips[zip] = tz
+      zips[zip] = tz
     end
+    zips
   end
 end
