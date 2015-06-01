@@ -12,16 +12,38 @@ Get the time zone for any US ZIP code.
 
 Add the gem to your Gemfile:
 
-    gem 'ziptz', github: 'infused/ziptz'
+    gem 'ziptz'
 
-Get the time zone for any ZIP code:
+
+## Usage
+
+Get the time zone name for any ZIP code:
 
     z = Ziptz.new
-    z.time_zone('97213') #=> "8"
+    z.time_zone_name('97213') #=> "Pacific"
 
-Get all the zip codes in a time zome:
+Get the time zone offset for any ZIP code:
 
-    z.zips('11') #=> ["96799", "96941", "96942", "96943", "96944"]
+    z.time_zone_offset('97213') #=> -8
+
+<i>Please note that offsets do not include daylight savings time.<i>
+
+
+Get all the zip codes in a time zone:
+
+    z.zips('American Samoa') #=> ["96799", "96941", "96942", "96943", "96944"]
+
+
+## Supported Time Zones
+
+* "Mountain" GMT -07:00
+* "Pacific" GMT -08:00
+* "Alaska" GMT -09:00
+* "Hawaii-Aleutian Islands" GMT -10:00
+* "American Samoa" GMT -11:00
+* "Marshall Islands" GMT +12:00
+* "Guam" GMT +10:00
+* "Palau" GMT +09:00
 
 ## License
 

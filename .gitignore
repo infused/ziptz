@@ -1,4 +1,6 @@
+.rubocop.yml
 .ruby-version
 .ruby-gemset
 database.yml
 Gemfile.lock
+
