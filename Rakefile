@@ -19,6 +19,7 @@ end
 
 desc 'Create ziptz.yml from zipcodes database'
 task :create_ziptz do
+  require 'yaml'
   require 'active_record'
 
   db_config = YAML::load(File.open('database.yml'))
