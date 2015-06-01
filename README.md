@@ -2,6 +2,7 @@
 <!-- [![Version](http://img.shields.io/gem/v/ziptz.svg?style=flat)](https://rubygems.org/gems/ziptz) -->
 [![Build Status](http://img.shields.io/travis/infused/ziptz/master.svg?style=flat)](http://travis-ci.org/infused/ziptz)
 [![Issues](https://img.shields.io/github/issues/infused/ziptz.svg)](https://github.com/infused/ziptz/issues)
+[![Total Downloads](https://img.shields.io/gem/dt/ziptz.svg)](https://rubygems.org/gems/ziptz/)
 
 Get the time zone for any US ZIP code.
 
@@ -22,7 +23,7 @@ Get all the zip codes in a time zome:
 
     z.zips('11') #=> ["96799", "96941", "96942", "96943", "96944"]
 
-  ## License
+## License
 
   Copyright (c) 2015 Keith Morrison <<keithm@infused.org>>
 
