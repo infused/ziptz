@@ -53,7 +53,7 @@ class Ziptz
   end
 
   def data_path
-    File.join(File.dirname(__FILE__), '..', 'ziptz.data')
+    File.join(File.dirname(__FILE__), '..', 'data', 'ziptz.data')
   end
 
   def load_data

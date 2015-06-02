@@ -45,7 +45,7 @@ task :create_ziptz do
   lines = data.map {|k, v| "#{k}=#{v}"}
   lines.sort!
 
-  File.open('ziptz.data', 'w') do |f|
+  File.open('data/ziptz.data', 'w') do |f|
     lines.each {|line| f.puts line}
   end
 
