@@ -19,7 +19,6 @@ end
 
 desc 'Create ziptz.yml from zipcodes database'
 task :create_ziptz do
-  require 'gdbm'
   require 'yaml'
   require 'active_record'
 
@@ -34,13 +33,20 @@ task :create_ziptz do
     alias_attribute :time_zone, :TimeZone
   end
 
-  puts "Rebuilding zip code database"
+  puts "Retrieving zip codes from database"
 
-  gdbm = GDBM.new('data/ziptz.db')
-
-  ZipCode.order(:ZipCode).find_each do |zip|
-    gdbm[zip.zip_code] ||= zip.time_zone
+  data = {}
+  ZipCode.find_each do |zip|
+    data[zip.zip_code] ||= zip.time_zone
   end
 
-  gdbm.close
+  puts "Writing ziptz.data"
+
+  lines = data.map {|k, v| "#{k}=#{v}"}
+  lines.sort!
+
+  File.open('data/ziptz.data', 'w') do |f|
+    lines.each {|line| f.puts line}
+  end
+
 end
