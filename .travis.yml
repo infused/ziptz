@@ -13,6 +13,8 @@ git:
 bundler_args: --without development
 script: bundle exec rspec -fdoc
 gemfile: Gemfile.travis
+before_install:
+  - sudo apt-get install libgdbm3
 addons:
   code_climate:
     repo_token:
