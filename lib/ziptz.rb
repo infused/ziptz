@@ -1,4 +1,4 @@
-require 'yaml'
+require 'gdbm'
 
 class Ziptz
   TZ_INFO = {
@@ -14,10 +14,6 @@ class Ziptz
     '14' => {name: 'Guam', offset: 10},
     '15' => {name: 'Palau', offset: 9}
   }
-
-  def initialize
-    @zips = load_data
-  end
 
   def time_zone_name(zip)
     hash = time_zone_hash(zip)
@@ -37,12 +33,12 @@ class Ziptz
   protected
 
   def zips_by_code(tz_code)
-    selected = @zips.select { |_, v| v == tz_code.to_s }
-    selected.keys.sort
+    selected = db.select { |_, v| v == tz_code.to_s }
+    selected.map { |s| s[0] }.sort
   end
 
   def time_zone_hash(zip)
-    TZ_INFO[@zips[zip.to_s]]
+    TZ_INFO[db[zip.to_s]]
   end
 
   def tz_name_to_code
@@ -53,13 +49,10 @@ class Ziptz
   end
 
   def data_path
-    File.join(File.dirname(__FILE__), '..', 'data', 'ziptz.data')
+    File.join(File.dirname(__FILE__), '..', 'data', 'ziptz.db')
   end
 
-  def load_data
-    File.foreach(data_path).with_object({}) do |line, data|
-      zip, tz = line.split('=').map(&:strip)
-      data[zip] = tz
-    end
+  def db
+    @db ||= GDBM.open(data_path, nil, GDBM::READER)
   end
 end
