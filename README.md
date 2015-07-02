@@ -1,6 +1,7 @@
 # Ziptz
 <!-- [![Version](http://img.shields.io/gem/v/ziptz.svg?style=flat)](https://rubygems.org/gems/ziptz) -->
 [![Build Status](http://img.shields.io/travis/infused/ziptz/master.svg?style=flat)](http://travis-ci.org/infused/ziptz)
+[![Dependency Status](http://img.shields.io/gemnasium/infused/ziptz.svg?style=flat)](https://gemnasium.com/infused/ziptz)
 [![Issues](https://img.shields.io/github/issues/infused/ziptz.svg)](https://github.com/infused/ziptz/issues)
 [![Total Downloads](https://img.shields.io/gem/dt/ziptz.svg)](https://rubygems.org/gems/ziptz/)
 
