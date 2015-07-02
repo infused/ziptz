@@ -26,7 +26,7 @@ Get the time zone offset for any ZIP code:
 
     z.time_zone_offset('97213') #=> -8
 
-<i>Please note that offsets do not include daylight savings time.<i>
+<i>Please note that offsets do not include daylight savings time.</i>
 
 
 Get all the zip codes in a time zone:
