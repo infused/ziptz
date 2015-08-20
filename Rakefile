@@ -1,4 +1,4 @@
-require 'bundler/setup';
+require 'bundler/setup'
 Bundler.setup(:default, :development)
 
 require 'rspec/core/rake_task'
@@ -10,11 +10,11 @@ RSpec::Core::RakeTask.new :specdoc do |t|
   t.rspec_opts = %w(-fl)
 end
 
-task :default => :spec
+task default: :spec
 
-desc "Open an irb session preloaded with this library"
+desc 'Open an irb session preloaded with this library'
 task :console do
-  sh "irb -rubygems -I lib -r ziptz.rb"
+  sh 'irb -rubygems -I lib -r ziptz.rb'
 end
 
 desc 'Create ziptz.yml from zipcodes database'
@@ -22,7 +22,7 @@ task :create_ziptz do
   require 'yaml'
   require 'active_record'
 
-  db_config = YAML::load(File.open('database.yml'))
+  db_config = YAML.load(File.open 'database.yml')
   ActiveRecord::Base.establish_connection(db_config)
 
   class ZipCode < ActiveRecord::Base
@@ -33,20 +33,19 @@ task :create_ziptz do
     alias_attribute :time_zone, :TimeZone
   end
 
-  puts "Retrieving zip codes from database"
+  puts 'Retrieving zip codes from database'
 
   data = {}
   ZipCode.find_each do |zip|
     data[zip.zip_code] ||= zip.time_zone
   end
 
-  puts "Writing ziptz.data"
+  puts 'Writing ziptz.data'
 
-  lines = data.map {|k, v| "#{k}=#{v}"}
+  lines = data.map { |k, v| "#{k}=#{v}" }
   lines.sort!
 
   File.open('data/ziptz.data', 'w') do |f|
-    lines.each {|line| f.puts line}
+    lines.each { |line| f.puts line }
   end
-
 end

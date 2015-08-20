@@ -37,18 +37,18 @@ class Ziptz
   protected
 
   def zips_by_code(tz_code)
-    selected = @zips.select { |_, v| v == tz_code.to_s }
-    selected.keys.sort
+    @zips.select { |_, v| v == tz_code.to_s }.keys.sort
   end
 
   def time_zone_hash(zip)
-    TZ_INFO[@zips[zip.to_s]]
+    key = @zips[zip.to_s]
+    TZ_INFO[key]
   end
 
   def tz_name_to_code
-    @tz_name_to_code ||= TZ_INFO.inject({}) do |data, (code, tz)|
-      data[tz[:name].downcase] = code
-      data
+    @tz_name_to_code ||= TZ_INFO.each_with_object({}) do |(code, tz), data|
+      key = tz[:name].downcase
+      data[key] = code
     end
   end
 
@@ -58,7 +58,7 @@ class Ziptz
 
   def load_data
     File.foreach(data_path).with_object({}) do |line, data|
-      zip, tz = line.split('=').map(&:strip)
+      zip, tz = line.strip.split('=')
       data[zip] = tz
     end
   end
