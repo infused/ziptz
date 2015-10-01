@@ -38,11 +38,11 @@ describe Ziptz do
       let(:ziptz) { Ziptz.new }
 
       it 'returns an array of zip codes' do
-        expect(ziptz.zips('American Samoa')).to eq %w(96799 96941 96942 96943 96944)
+        expect(ziptz.zips('American Samoa')).to eq %w(96799)
       end
 
       it 'is case-insensitive' do
-        expect(ziptz.zips('american samoa')).to eq %w(96799 96941 96942 96943 96944)
+        expect(ziptz.zips('american samoa')).to eq %w(96799)
       end
 
       it 'returns nil for unknown time zones' do
