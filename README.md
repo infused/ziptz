@@ -7,7 +7,7 @@
 
 Get the time zone for any US ZIP code.
 
-<i>ZIP codes are up to date as of <b>November 2015</b>.</i>
+<i>ZIP codes are up to date as of <b>December 2015</b>.</i>
 
 ## Installation
 
@@ -37,14 +37,20 @@ Get all the zip codes in a time zone:
 
 ## Supported Time Zones
 
-* "Mountain" GMT -07:00
-* "Pacific" GMT -08:00
-* "Alaska" GMT -09:00
-* "Hawaii-Aleutian Islands" GMT -10:00
-* "American Samoa" GMT -11:00
-* "Marshall Islands" GMT +12:00
-* "Guam" GMT +10:00
-* "Palau" GMT +09:00
+* "Atlantic" UTC -04:00
+* "Eastern" UTC -05:00
+* "Central" UTC -06:00
+* "Mountain" UTC -07:00
+* "Pacific" UTC -08:00
+* "Alaska" UTC -09:00
+* "Hawaii-Aleutian Islands" UTC -10:00
+* "American Samoa" UTC -11:00
+* "Marshall Islands" UTC +12:00
+* "Guam" UTC +10:00
+* "Palau" UTC +09:00
+* "Micronesia" UTC +11:00
+
+Note that APO/FPO zip codes will not return a known time zone.
 
 ## License
 
