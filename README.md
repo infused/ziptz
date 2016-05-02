@@ -6,7 +6,7 @@
 
 Get the time zone for any US ZIP code.
 
-<i>ZIP codes are up to date as of <b>April 2016</b>.</i>
+<i>ZIP codes are up to date as of <b>May 2016</b>.</i>
 
 ## Installation
 
