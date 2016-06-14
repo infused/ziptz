@@ -54,8 +54,8 @@ class Ziptz
 
   def tz_name_to_code
     @tz_name_to_code ||= TZ_INFO.each_with_object({}) do |(code, tz), data|
-      key = tz[:name].downcase
-      data[key] = code
+      name = tz[:name].downcase
+      data[name] = code
     end
   end
 
