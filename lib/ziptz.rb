@@ -22,12 +22,12 @@ class Ziptz
   end
 
   def time_zone_name(zip)
-    hash = time_zone_hash(zip)
+    hash = get_time_zone_hash(zip)
     hash && hash[:name]
   end
 
   def time_zone_offset(zip)
-    tz = time_zone_hash(zip)
+    tz = get_time_zone_hash(zip)
     tz && tz[:offset]
   end
 
@@ -42,7 +42,7 @@ class Ziptz
     @zips.select { |_, v| v == tz_code.to_s }.keys.sort
   end
 
-  def time_zone_hash(zip)
+  def get_time_zone_hash(zip)
     key = @zips[zip.to_s]
     TZ_INFO[key]
   end
