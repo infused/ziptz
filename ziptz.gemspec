@@ -1,10 +1,8 @@
-lib = File.expand_path('../lib/', __FILE__)
-$:.unshift lib unless $:.include?(lib)
-require 'ziptz/version'
+require File.expand_path('lib/ziptz')
 
 Gem::Specification.new do |s|
   s.name = 'ziptz'
-  s.version = ZipTZ::VERSION
+  s.version = Ziptz::VERSION
   s.platform = Gem::Platform::RUBY
   s.authors = ['Keith Morrison']
   s.email = 'keithm@infused.org'
