@@ -3,4 +3,4 @@
 .ruby-gemset
 database.yml
 Gemfile.lock
-
+.rspec
