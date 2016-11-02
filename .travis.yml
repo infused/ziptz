@@ -5,7 +5,6 @@ rvm:
   - 2.1.5
   - 2.0.0
   - jruby-1.7.19
-  - rbx
 branches:
   only:
     - master
