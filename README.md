@@ -26,7 +26,7 @@ Get the time zone offset for any ZIP code:
 
     z.time_zone_offset('97213') #=> -8
 
-<i>Please note that offsets do not include daylight savings time.</i>
+<em>Note that offsets do not include daylight savings time.</em>
 
 
 Get all the zip codes in a time zone:
@@ -49,7 +49,7 @@ Get all the zip codes in a time zone:
 * "Palau" UTC +09:00
 * "Micronesia" UTC +11:00
 
-Note that APO/FPO zip codes will not return a known time zone.
+<em>Note that APO/FPO zip codes will not return a known time zone offset.</em>
 
 ## License
 
