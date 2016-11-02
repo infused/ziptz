@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe Ziptz do
+  describe 'when inspected' do
+    let(:ziptz) { Ziptz.new }
+
+    it 'does not show internal instance variables' do
+      expect(ziptz.inspect).to match /#<Ziptz:\d+>/
+    end
+  end
+
   describe '#time_zone_name' do
     let(:ziptz) { Ziptz.new }
 

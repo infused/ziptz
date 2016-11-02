@@ -38,6 +38,10 @@ class Ziptz
     tz_code && zips_by_code(tz_code)
   end
 
+  def inspect
+    "#<#{self.class}:#{object_id}>"
+  end
+
   protected
 
   def zips_by_code(tz_code)
