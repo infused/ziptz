@@ -17,7 +17,7 @@ task :console do
   sh 'irb -rubygems -I lib -r ziptz.rb'
 end
 
-desc 'Create ziptz.yml from zipcodes database'
+desc 'Create ziptz db from zipcodes database'
 task :create_ziptz do
   require 'yaml'
   require 'active_record'
