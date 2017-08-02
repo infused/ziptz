@@ -1,11 +1,11 @@
 language: ruby
 rvm:
   - 2.4.1
-  - 2.3.9
+  - 2.3.4
   - 2.2.7
   - 2.1.10
   - 2.0.0
-  - jruby-1.7.19
+  - jruby
 branches:
   only:
     - master
