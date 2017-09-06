@@ -1,7 +1,7 @@
 require 'yaml'
 
 class Ziptz
-  VERSION = '1.0.26'
+  VERSION = '1.0.27'
 
   TZ_INFO = {
     '0'  => {name: 'APO/FPO (time zone unknown)', offset: 0},
