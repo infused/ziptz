@@ -6,7 +6,7 @@
 
 Get the time zone for any US ZIP code.
 
-<i>ZIP codes are up to date as of <b>January 2018</b>.</i>
+<i>ZIP codes are up to date as of <b>February 2018</b>.</i>
 
 ## Installation
 
@@ -53,7 +53,7 @@ Get all the zip codes in a time zone:
 
 ## License
 
-  Copyright (c) 2015-2017 Keith Morrison <<keithm@infused.org>>
+  Copyright (c) 2015-2018 Keith Morrison <<keithm@infused.org>>
 
   Permission is hereby granted, free of charge, to any person
   obtaining a copy of this software and associated documentation
