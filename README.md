@@ -4,7 +4,7 @@
 [![Dependency Status](http://img.shields.io/gemnasium/infused/ziptz.svg?style=flat)](https://gemnasium.com/infused/ziptz)
 [![Total Downloads](https://img.shields.io/gem/dt/ziptz.svg)](https://rubygems.org/gems/ziptz/)
 
-Get the time zone for any US ZIP code.
+Get time zone and daylight saving time for any US ZIP code.
 
 <i>ZIP codes are up to date as of <b>May 2018</b>.</i>
 
@@ -26,9 +26,9 @@ Get the time zone offset for any ZIP code:
 
     z.time_zone_offset('97213') #=> -8
 
-<em>Note that offsets do not include daylight savings time.</em>
+<em>Note that offsets do not include daylight saving time.</em>
 
-Determine if the ZIP code uses Daylight Savings Time:
+Determine if the ZIP code uses Daylight Saving Time:
 
     z.time_zone_uses_dst?('97213') #=> true
 
