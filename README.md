@@ -28,6 +28,9 @@ Get the time zone offset for any ZIP code:
 
 <em>Note that offsets do not include daylight savings time.</em>
 
+Determine if the ZIP code uses Daylight Savings Time:
+
+    z.time_zone_uses_dst?('97213') #=> true
 
 Get all the zip codes in a time zone:
 

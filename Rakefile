@@ -31,21 +31,32 @@ task :create_ziptz do
 
     alias_attribute :zip_code, :ZipCode
     alias_attribute :time_zone, :TimeZone
+    alias_attribute :day_light_saving, :DayLightSaving
   end
 
   puts 'Retrieving zip codes from database'
 
   data = {}
   ZipCode.find_each do |zip|
-    data[zip.zip_code] ||= zip.time_zone
+    data[zip.zip_code] ||= {}
+    data[zip.zip_code][:tz] ||= zip.time_zone
+    data[zip.zip_code][:dst] ||= zip.day_light_saving
   end
 
-  puts 'Writing ziptz.data'
+  puts 'Writing tz.data'
 
-  lines = data.map { |k, v| "#{k}=#{v}" }
+  lines = data.map { |k, v| "#{k}=#{v[:tz]}" }
   lines.sort!
 
-  File.open('data/ziptz.data', 'w') do |f|
+  File.open('data/tz.data', 'w') do |f|
+    lines.each { |line| f.puts line }
+  end
+
+  puts 'Writing dst.data'
+  lines = data.map { |k, v| "#{k}=#{v[:dst] =~ /y/i ? 1 : 0}"}
+  lines.sort!
+
+  File.open('data/dst.data', 'w') do |f|
     lines.each { |line| f.puts line }
   end
 end

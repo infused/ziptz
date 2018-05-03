@@ -25,12 +25,23 @@ describe Ziptz do
     end
   end
 
-  describe '#time_zone_offset' do
+  describe '#time_zone_uses_dst?' do
     let(:ziptz) { Ziptz.new }
 
     context 'when given a 5-digit zipcode' do
       it 'returns the time zone number' do
-        expect(ziptz.time_zone_offset('97034')).to eq -8
+        expect(ziptz.time_zone_name('97034')).to eq 'Pacific'
+      end
+    end
+  end
+
+  describe '#time_zone_offset' do
+    let(:ziptz) { Ziptz.new }
+
+    context 'when given a 5-digit zipcode' do
+      it 'returns a boolean' do
+        expect(ziptz.time_zone_uses_dst?('97034')).to eq true
+        expect(ziptz.time_zone_uses_dst?('85004')).to eq false
       end
     end
 

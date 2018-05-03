@@ -1,7 +1,7 @@
 require 'yaml'
 
 class Ziptz
-  VERSION = '1.0.35'
+  VERSION = '1.1.35'
 
   TZ_INFO = {
     '0'  => {name: 'APO/FPO (time zone unknown)', offset: 0},
@@ -20,7 +20,8 @@ class Ziptz
   }
 
   def initialize
-    @zips = load_data
+    @tz = load_tz_data
+    @dst = load_dst_data
   end
 
   def time_zone_name(zip)
@@ -31,6 +32,10 @@ class Ziptz
   def time_zone_offset(zip)
     tz = time_zone_info(zip)
     tz && tz[:offset]
+  end
+
+  def time_zone_uses_dst?(zip)
+    @dst[zip.to_s]
   end
 
   def zips(tz_name)
@@ -45,7 +50,7 @@ class Ziptz
   protected
 
   def zips_by_code(tz_code)
-    @zips.select { |_, v| v == tz_code.to_s }.keys.sort
+    @tz.select { |_, v| v == tz_code.to_s }.keys.sort
   end
 
   def time_zone_info(zip)
@@ -53,7 +58,7 @@ class Ziptz
   end
 
   def get_time_zone(zip)
-    @zips[zip.to_s]
+    @tz[zip.to_s]
   end
 
   def tz_name_to_code
@@ -63,14 +68,25 @@ class Ziptz
     end
   end
 
-  def data_path
-    File.join(File.dirname(__FILE__), '..', 'data', 'ziptz.data')
+  def tz_data_path
+    File.join(File.dirname(__FILE__), '..', 'data', 'tz.data')
   end
 
-  def load_data
-    File.foreach(data_path).with_object({}) do |line, data|
+  def load_tz_data
+    File.foreach(tz_data_path).with_object({}) do |line, data|
       zip, tz = line.strip.split('=')
       data[zip] = tz
+    end
+  end
+
+  def dst_data_path
+    File.join(File.dirname(__FILE__), '..', 'data', 'dst.data')
+  end
+
+  def load_dst_data
+    File.foreach(dst_data_path).with_object({}) do |line, data|
+      zip, dst = line.strip.split('=')
+      data[zip] = dst == '1'
     end
   end
 end
