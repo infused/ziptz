@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors = ['Keith Morrison']
   s.email = 'keithm@infused.org'
   s.homepage = 'http://github.com/infused/ziptz'
-  s.summary = 'TimeZone for any 5-digit US zip code'
+  s.summary = 'TimeZone info for any 5-digit US zip code'
   s.description = 'Get timezone info for all 5-digit US zip codes'
   s.license = 'MIT'
 
