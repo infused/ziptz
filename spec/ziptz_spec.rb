@@ -14,7 +14,7 @@ describe Ziptz do
 
     context 'when given a 5-digit zipcode' do
       it 'returns the time zone number' do
-        expect(ziptz.time_zone_name('97034')).to eq 'Pacific'
+        expect(ziptz.time_zone_name('97034')).to eq 'America/Los_Angeles'
       end
     end
 
@@ -30,7 +30,7 @@ describe Ziptz do
 
     context 'when given a 5-digit zipcode' do
       it 'returns the time zone number' do
-        expect(ziptz.time_zone_name('97034')).to eq 'Pacific'
+        expect(ziptz.time_zone_name('97034')).to eq 'America/Los_Angeles'
       end
     end
   end
@@ -57,11 +57,11 @@ describe Ziptz do
       let(:ziptz) { Ziptz.new }
 
       it 'returns an array of zip codes' do
-        expect(ziptz.zips('American Samoa')).to eq %w(96799)
+        expect(ziptz.zips('Pacific/Pago_Pago')).to eq %w(96799)
       end
 
       it 'is case-insensitive' do
-        expect(ziptz.zips('american samoa')).to eq %w(96799)
+        expect(ziptz.zips('Pacific/Pago_Pago')).to eq %w(96799)
       end
 
       it 'returns nil for unknown time zones' do

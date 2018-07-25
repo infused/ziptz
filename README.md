@@ -20,7 +20,7 @@ Add the gem to your Gemfile:
 Get the time zone name for any ZIP code:
 
     z = Ziptz.new
-    z.time_zone_name('97213') #=> "Pacific"
+    z.time_zone_name('97213') #=> "America/Los_Angeles"
 
 Get the time zone offset for any ZIP code:
 
@@ -34,25 +34,43 @@ Determine if the ZIP code uses Daylight Saving Time:
 
 Get all the zip codes in a time zone:
 
-    z.zips('American Samoa') #=> ["96799", "96941", "96942", "96943", "96944"]
+    z.zips('Pacific/Pago_Pago') #=> ["96799", "96941", "96942", "96943", "96944"]
 
 
 ## Supported Time Zones
 
-* "Atlantic" UTC -04:00
-* "Eastern" UTC -05:00
-* "Central" UTC -06:00
-* "Mountain" UTC -07:00
-* "Pacific" UTC -08:00
-* "Alaska" UTC -09:00
-* "Hawaii-Aleutian Islands" UTC -10:00
-* "American Samoa" UTC -11:00
-* "Marshall Islands" UTC +12:00
-* "Guam" UTC +10:00
-* "Palau" UTC +09:00
-* "Micronesia" UTC +11:00
+* "America/Puerto_Rico" UTC -04:00
+* "America/New_York" UTC -05:00
+* "America/Chicago" UTC -06:00
+* "America/Denver" UTC -07:00
+* "America/Los_Angeles" UTC -08:00
+* "America/Anchorage" UTC -09:00
+* "Pacific/Honolulu" UTC -10:00
+* "Pacific/Pago_Pago" UTC -11:00
+* "Pacific/Majuro" UTC +12:00
+* "Pacific/Guam" UTC +10:00
+* "Pacific/Palau" UTC +09:00
+* "Pacific/Pohnpei" UTC +11:00
 
 <em>Note that APO/FPO zip codes will not return a known time zone offset.</em>
+
+## Version 2 breaking changes
+
+Time zone names now reflect standard tz-database names.
+
+| V1 Name | V2 Name |
+| --- | --- |
+| Atlantic | America/Puerto_Rico |
+| Eastern | America/New_York |
+| Central | America/Chicago |
+| Mountain | America/Denver |
+| Pacific | America/Los_Angeles |
+| Hawaii-Aleutian Islands | Pacific/Honolulu |
+| American Samoa | Pacific/Pago_Pago |
+| Marshall Islands | Pacific/Majuro |
+| Guam | Pacific/Guam |
+| Palau | Pacific/Palau |
+| Micronesia | Pacific/Pohnpei |
 
 ## License
 

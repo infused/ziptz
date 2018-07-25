@@ -1,22 +1,22 @@
 require 'yaml'
 
 class Ziptz
-  VERSION = '1.1.37'
+  VERSION = '2.0.0'
 
   TZ_INFO = {
     '0'  => {name: 'APO/FPO (time zone unknown)', offset: 0},
-    '4'  => {name: 'Atlantic', offset: -4},
-    '5'  => {name: 'Eastern', offset: -5},
-    '6'  => {name: 'Central', offset: -6},
-    '7'  => {name: 'Mountain', offset: -7},
-    '8'  => {name: 'Pacific', offset: -8},
-    '9'  => {name: 'Alaska', offset: -9},
-    '10' => {name: 'Hawaii-Aleutian Islands', offset: -10},
-    '11' => {name: 'American Samoa', offset: -11},
-    '13' => {name: 'Marshall Islands', offset: 12},
-    '14' => {name: 'Guam', offset: 10},
-    '15' => {name: 'Palau', offset: 9},
-    '16' => {name: 'Micronesia', offset: 11}
+    '4'  => {name: 'America/Puerto_Rico', offset: -4},
+    '5'  => {name: 'America/New_York', offset: -5},
+    '6'  => {name: 'America/Chicago', offset: -6},
+    '7'  => {name: 'America/Denver', offset: -7},
+    '8'  => {name: 'America/Los_Angeles', offset: -8},
+    '9'  => {name: 'America/Anchorage', offset: -9},
+    '10' => {name: 'America/Adak', offset: -10},
+    '11' => {name: 'Pacific/Pago_Pago', offset: -11},
+    '13' => {name: 'Pacific/Majuro', offset: 12},
+    '14' => {name: 'Pacific/Guam', offset: 10},
+    '15' => {name: 'Pacific/Palau', offset: 9},
+    '16' => {name: 'Pacific/Pohnpei', offset: 11}
   }
 
   def initialize
