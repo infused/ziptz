@@ -19,11 +19,6 @@ class Ziptz
     '16' => {name: 'Pacific/Pohnpei', offset: 11}
   }
 
-  def initialize
-    @tz = load_tz_data
-    @dst = load_dst_data
-  end
-
   def time_zone_name(zip)
     hash = time_zone_info(zip)
     hash && hash[:name]
@@ -35,7 +30,7 @@ class Ziptz
   end
 
   def time_zone_uses_dst?(zip)
-    @dst[zip.to_s]
+    dst[zip.to_s]
   end
 
   def zips(tz_name)
@@ -49,8 +44,16 @@ class Ziptz
 
   protected
 
+  def tz
+    @tz ||= load_tz_data
+  end
+
+  def dst
+    @dst ||= load_dst_data
+  end
+
   def zips_by_code(tz_code)
-    @tz.select { |_, v| v == tz_code.to_s }.keys.sort
+    tz.select { |_, v| v == tz_code.to_s }.keys.sort
   end
 
   def time_zone_info(zip)
@@ -58,7 +61,7 @@ class Ziptz
   end
 
   def get_time_zone(zip)
-    @tz[zip.to_s]
+    tz[zip.to_s]
   end
 
   def tz_name_to_code
