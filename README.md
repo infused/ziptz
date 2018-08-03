@@ -1,8 +1,8 @@
 # Ziptz
 [![Version](http://img.shields.io/gem/v/ziptz.svg?style=flat)](https://rubygems.org/gems/ziptz)
 [![Build Status](http://img.shields.io/travis/infused/ziptz/master.svg?style=flat)](http://travis-ci.org/infused/ziptz)
-[![Dependency Status](http://img.shields.io/gemnasium/infused/ziptz.svg?style=flat)](https://gemnasium.com/infused/ziptz)
 [![Total Downloads](https://img.shields.io/gem/dt/ziptz.svg)](https://rubygems.org/gems/ziptz/)
+[![License](https://img.shields.io/github/license/infused/ziptz.svg)](https://github.com/infused/ziptz)
 
 Get time zone and daylight saving time for any US ZIP code.
 
