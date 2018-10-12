@@ -11,7 +11,7 @@ class Ziptz
     '7'  => {name: 'America/Denver', offset: -7},
     '8'  => {name: 'America/Los_Angeles', offset: -8},
     '9'  => {name: 'America/Anchorage', offset: -9},
-    '10' => {name: 'America/Adak', offset: -10},
+    '10' => {name: 'Pacific/Honolulu', offset: -10},
     '11' => {name: 'Pacific/Pago_Pago', offset: -11},
     '13' => {name: 'Pacific/Majuro', offset: 12},
     '14' => {name: 'Pacific/Guam', offset: 10},
