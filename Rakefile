@@ -3,11 +3,11 @@ Bundler.setup(:default, :development)
 
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new :spec do |t|
-  t.rspec_opts = %w(--color)
+  t.rspec_opts = %w[--color]
 end
 
 RSpec::Core::RakeTask.new :specdoc do |t|
-  t.rspec_opts = %w(-fl)
+  t.rspec_opts = %w[-fl]
 end
 
 task default: :spec
@@ -22,7 +22,7 @@ task :create_ziptz do
   require 'yaml'
   require 'active_record'
 
-  db_config = YAML.load(File.open 'database.yml')
+  db_config = YAML.load(File.open('database.yml'))
   ActiveRecord::Base.establish_connection(db_config)
 
   class ZipCode < ActiveRecord::Base
@@ -53,7 +53,7 @@ task :create_ziptz do
   end
 
   puts 'Writing dst.data'
-  lines = data.map { |k, v| "#{k}=#{v[:dst] =~ /y/i ? 1 : 0}"}
+  lines = data.map { |k, v| "#{k}=#{v[:dst] =~ /y/i ? 1 : 0}" }
   lines.sort!
 
   File.open('data/dst.data', 'w') do |f|
