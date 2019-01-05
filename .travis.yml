@@ -1,8 +1,10 @@
 language: ruby
 rvm:
-  - 2.4.2
-  - 2.3.5
-  - 2.2.7
+  - 2.6.0
+  - 2.5.3
+  - 2.4.5
+  - 2.3.8
+  - 2.2.10
   - 2.1.10
   - 2.0.0
 branches:
@@ -12,3 +14,4 @@ bundler_args: --without development
 script: bundle exec rspec -fdoc
 gemfile: Gemfile.travis
 dist: trusty
+before_install: gem install bundler

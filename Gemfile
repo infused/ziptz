@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 group :development, :test do
   gem 'activerecord'
+  gem 'bundler'
   gem 'byebug'
   gem 'guard'
   gem 'guard-rspec'

@@ -2,5 +2,6 @@ gemspec
 source 'https://rubygems.org'
 
 group :test do
+  gem 'bundler'
   gem 'rspec'
 end
