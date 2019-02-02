@@ -38,6 +38,8 @@ task :create_ziptz do
 
   data = {}
   ZipCode.find_each do |zip|
+    next if zip.time_zone.blank? || zip.day_light_saving.blank?
+
     data[zip.zip_code] ||= {}
     data[zip.zip_code][:tz] ||= zip.time_zone
     data[zip.zip_code][:dst] ||= zip.day_light_saving
