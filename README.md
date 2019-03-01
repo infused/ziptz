@@ -6,7 +6,7 @@
 
 Get time zone and daylight saving time for any US ZIP code.
 
-<i>ZIP codes are up to date as of <b>February 2019</b>.</i>
+<i>ZIP codes are up to date as of <b>March 2019</b>.</i>
 
 ## Installation
 
