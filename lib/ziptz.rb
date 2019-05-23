@@ -57,7 +57,7 @@ class Ziptz
   end
 
   def time_zone_info(zip)
-    TZ_INFO[get_time_zone zip]
+    TZ_INFO[get_time_zone(zip)]
   end
 
   def get_time_zone(zip)
