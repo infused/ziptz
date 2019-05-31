@@ -13,4 +13,5 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rspec'
+  gem 'tty-spinner'
 end

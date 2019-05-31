@@ -21,6 +21,10 @@ desc 'Create ziptz db from zipcodes database'
 task :create_ziptz do
   require 'yaml'
   require 'active_record'
+  require 'tty-spinner'
+
+  spinner = TTY::Spinner.new('[:spinner] Retrieving zip codes from database')
+  spinner.auto_spin
 
   db_config = YAML.load(File.open('database.yml'))
   ActiveRecord::Base.establish_connection(db_config)
@@ -34,8 +38,6 @@ task :create_ziptz do
     alias_attribute :day_light_saving, :DayLightSaving
   end
 
-  puts 'Retrieving zip codes from database'
-
   data = {}
   ZipCode.find_each do |zip|
     next if zip.time_zone.blank? || zip.day_light_saving.blank?
@@ -44,21 +46,28 @@ task :create_ziptz do
     data[zip.zip_code][:tz] ||= zip.time_zone
     data[zip.zip_code][:dst] ||= zip.day_light_saving
   end
+  spinner.success
 
-  puts 'Writing tz.data'
-
+  spinner = TTY::Spinner.new('[:spinner] Writing tz.data')
+  spinner.auto_spin
   lines = data.map { |k, v| "#{k}=#{v[:tz]}" }
   lines.sort!
-
   File.open('data/tz.data', 'w') do |f|
     lines.each { |line| f.puts line }
   end
+  spinner.success
 
-  puts 'Writing dst.data'
+  spinner = TTY::Spinner.new('[:spinner] Writing dst.data')
+  spinner.auto_spin
   lines = data.map { |k, v| "#{k}=#{v[:dst] =~ /y/i ? 1 : 0}" }
   lines.sort!
 
   File.open('data/dst.data', 'w') do |f|
     lines.each { |line| f.puts line }
   end
+
+  spinner.success
+rescue StandardError
+  spinner && spinner.error
+  raise
 end
