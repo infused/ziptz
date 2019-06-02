@@ -7,6 +7,7 @@ group :development, :test do
   gem 'byebug'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'irb'
   gem 'mysql2'
   gem 'rake'
   gem 'rspec'
