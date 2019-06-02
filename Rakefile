@@ -38,6 +38,8 @@ task :create_ziptz do
     alias_attribute :day_light_saving, :DayLightSaving
   end
 
+  spinner = TTY::Spinner.new('[:spinner] :message')
+  spinner.update message: 'Retrieving zip codes from database'
   data = {}
   ZipCode.find_each do |zip|
     next if zip.time_zone.blank? || zip.day_light_saving.blank?
@@ -46,21 +48,23 @@ task :create_ziptz do
     data[zip.zip_code][:tz] ||= zip.time_zone
     data[zip.zip_code][:dst] ||= zip.day_light_saving
   end
-  spinner = TTY::Spinner.new("[:spinner] Retrieving zip codes from database (#{data.size} records)")
+  spinner.update message: "Retrieving zip codes from database (#{data.size} records)"
   spinner.success
 
-  spinner = TTY::Spinner.new('[:spinner] Writing tz.data')
+  spinner = TTY::Spinner.new('[:spinner] :message')
+  spinner.update message: 'Writing tz.data'
   spinner.auto_spin
   lines = data.map { |k, v| "#{k}=#{v[:tz]}" }
   lines.sort!
   File.open('data/tz.data', 'w') do |f|
     lines.each { |line| f.puts line }
   end
-  spinner = TTY::Spinner.new "[:spinner] Writing tz.data (#{File.size('data/tz.data').to_s} bytes)"
+  spinner.update message: "Writing tz.data (#{File.size('data/tz.data').to_s} bytes)"
   spinner.success
   # puts File.size('data/tz.data').to_s
 
-  spinner = TTY::Spinner.new('[:spinner] Writing dst.data')
+  spinner = TTY::Spinner.new('[:spinner] :message')
+  spinner.update message: 'Writing dst.data'
   spinner.auto_spin
   lines = data.map { |k, v| "#{k}=#{v[:dst] =~ /y/i ? 1 : 0}" }
   lines.sort!
@@ -68,7 +72,7 @@ task :create_ziptz do
   File.open('data/dst.data', 'w') do |f|
     lines.each { |line| f.puts line }
   end
-  spinner = TTY::Spinner.new "[:spinner] Writing dst.data (#{File.size('data/dst.data').to_s} bytes)"
+  spinner.update message: "Writing dst.data (#{File.size('data/dst.data').to_s} bytes)"
   spinner.success
 rescue StandardError
   spinner && spinner.error
