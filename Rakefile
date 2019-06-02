@@ -26,7 +26,7 @@ task :create_ziptz do
   spinner = TTY::Spinner.new('[:spinner] Retrieving zip codes from database')
   spinner.auto_spin
 
-  db_config = YAML.load(File.open('database.yml'))
+  db_config = YAML.safe_load(File.open('database.yml'))
   ActiveRecord::Base.establish_connection(db_config)
 
   class ZipCode < ActiveRecord::Base
@@ -46,6 +46,7 @@ task :create_ziptz do
     data[zip.zip_code][:tz] ||= zip.time_zone
     data[zip.zip_code][:dst] ||= zip.day_light_saving
   end
+  spinner = TTY::Spinner.new("[:spinner] Retrieving zip codes from database (#{data.size} records)")
   spinner.success
 
   spinner = TTY::Spinner.new('[:spinner] Writing tz.data')
@@ -55,7 +56,9 @@ task :create_ziptz do
   File.open('data/tz.data', 'w') do |f|
     lines.each { |line| f.puts line }
   end
+  spinner = TTY::Spinner.new "[:spinner] Writing tz.data (#{File.size('data/tz.data').to_s} bytes)"
   spinner.success
+  # puts File.size('data/tz.data').to_s
 
   spinner = TTY::Spinner.new('[:spinner] Writing dst.data')
   spinner.auto_spin
@@ -65,7 +68,7 @@ task :create_ziptz do
   File.open('data/dst.data', 'w') do |f|
     lines.each { |line| f.puts line }
   end
-
+  spinner = TTY::Spinner.new "[:spinner] Writing dst.data (#{File.size('data/dst.data').to_s} bytes)"
   spinner.success
 rescue StandardError
   spinner && spinner.error
