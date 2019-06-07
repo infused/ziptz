@@ -1,5 +1,4 @@
 .byebug_history
-.rubocop.yml
 database.yml
 Gemfile.lock
 .rspec
