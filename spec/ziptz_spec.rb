@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ziptz do
+RSpec.describe Ziptz do
   let(:ziptz) { Ziptz.new }
 
   describe 'when inspected' do
