@@ -59,7 +59,7 @@ task :create_ziptz do
   File.open('data/tz.data', 'w') do |f|
     lines.each { |line| f.puts line }
   end
-  spinner.update message: "Writing tz.data (#{File.size('data/tz.data').to_s} bytes)"
+  spinner.update message: "Writing tz.data (#{File.size('data/tz.data')} bytes)"
   spinner.success
   # puts File.size('data/tz.data').to_s
 
@@ -72,7 +72,7 @@ task :create_ziptz do
   File.open('data/dst.data', 'w') do |f|
     lines.each { |line| f.puts line }
   end
-  spinner.update message: "Writing dst.data (#{File.size('data/dst.data').to_s} bytes)"
+  spinner.update message: "Writing dst.data (#{File.size('data/dst.data')} bytes)"
   spinner.success
 rescue StandardError
   spinner && spinner.error
