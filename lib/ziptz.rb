@@ -30,7 +30,7 @@ class Ziptz
   end
 
   def time_zone_uses_dst?(zip)
-    dst[zip.to_s]
+    dst[zip.to_s.slice(0, 5)]
   end
 
   def zips(tz_name)
@@ -61,7 +61,7 @@ class Ziptz
   end
 
   def get_time_zone(zip)
-    tz[zip.to_s]
+    tz[zip.to_s.slice(0, 5)]
   end
 
   def tz_name_to_code
