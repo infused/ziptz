@@ -9,6 +9,7 @@ class Ziptz
     '5' => {name: 'America/New_York', offset: -5},
     '6' => {name: 'America/Chicago', offset: -6},
     '7' => {name: 'America/Denver', offset: -7},
+    '8' => {name: 'America/Phoenix', offset: -7},
     '9' => {name: 'America/Los_Angeles', offset: -8},
     '10' => {name: 'America/Anchorage', offset: -9},
     '11' => {name: 'Pacific/Honolulu', offset: -10},
