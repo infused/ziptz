@@ -22,6 +22,7 @@ task :create_ziptz do
   require 'yaml'
   require 'active_record'
   require 'tty-spinner'
+  require 'ziptz'
 
   spinner = TTY::Spinner.new('[:spinner] Retrieving zip codes from database')
   spinner.auto_spin
@@ -45,7 +46,7 @@ task :create_ziptz do
     next if zip.time_zone.blank? || zip.day_light_saving.blank?
 
     data[zip.zip_code] ||= {}
-    data[zip.zip_code][:tz] ||= zip.time_zone
+    data[zip.zip_code][:tz] ||= Ziptz::TZ_INFO[zip.time_zone][:name]
     data[zip.zip_code][:dst] ||= zip.day_light_saving
   end
   spinner.update message: "Retrieving zip codes from database (#{data.size} records)"

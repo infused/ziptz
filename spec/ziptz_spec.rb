@@ -69,8 +69,8 @@ RSpec.describe Ziptz do
         expect(ziptz.zips('pacific/pago_pago')).to eq %w[96799]
       end
 
-      it 'returns nil for unknown time zones' do
-        expect(ziptz.zips('Glark')).to be_nil
+      it 'returns empty array for unknown time zones' do
+        expect(ziptz.zips('Glark')).to be_empty
       end
     end
   end

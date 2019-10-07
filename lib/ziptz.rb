@@ -20,8 +20,9 @@ class Ziptz
   }.freeze
 
   def time_zone_name(zip)
-    hash = time_zone_info(zip)
-    hash && hash[:name]
+    # hash = time_zone_info(zip)
+    # hash && hash[:name]
+    get_time_zone(zip)
   end
 
   def time_zone_offset(zip)
@@ -34,8 +35,10 @@ class Ziptz
   end
 
   def zips(tz_name)
-    tz_code = tz_name_to_code[tz_name.downcase]
-    tz_code && zips_by_code(tz_code)
+    # tz_code = tz_name_to_code[tz_name.downcase]
+    # tz_code && zips_by_code(tz_code)
+
+    zips_by_code(tz_name)
   end
 
   def inspect
@@ -53,7 +56,7 @@ class Ziptz
   end
 
   def zips_by_code(tz_code)
-    tz.select { |_, v| v == tz_code.to_s }.keys.sort
+    tz.select { |_, v| v.match?(/#{tz_code}/i) }.keys.sort
   end
 
   def time_zone_info(zip)
