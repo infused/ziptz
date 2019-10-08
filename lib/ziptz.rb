@@ -20,8 +20,6 @@ class Ziptz
   }.freeze
 
   def time_zone_name(zip)
-    # hash = time_zone_info(zip)
-    # hash && hash[:name]
     get_time_zone(zip)
   end
 
@@ -35,9 +33,6 @@ class Ziptz
   end
 
   def zips(tz_name)
-    # tz_code = tz_name_to_code[tz_name.downcase]
-    # tz_code && zips_by_code(tz_code)
-
     zips_by_code(tz_name)
   end
 
@@ -65,13 +60,6 @@ class Ziptz
 
   def get_time_zone(zip)
     tz[zip.to_s.slice(0, 5)]
-  end
-
-  def tz_name_to_code
-    @tz_name_to_code ||= TZ_INFO.each_with_object({}) do |(code, tz), data|
-      name = tz[:name].downcase
-      data[name] = code
-    end
   end
 
   def tz_data_path
