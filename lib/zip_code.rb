@@ -8,9 +8,10 @@ class ZipCode < ActiveRecord::Base
   self.primary_key = 'ZipCode'
   establish_connection YAML.safe_load(File.open('database.yml'))
 
-  alias_attribute :zip_code, :ZipCode
-  alias_attribute :time_zone, :TimeZone
   alias_attribute :day_light_saving, :DayLightSaving
+  alias_attribute :state, :State
+  alias_attribute :time_zone, :TimeZone
+  alias_attribute :zip_code, :ZipCode
 
   def self.import
     spinner = TTY::Spinner.new('[:spinner] Retrieving zip codes from database')
@@ -23,7 +24,13 @@ class ZipCode < ActiveRecord::Base
       next if zip.time_zone.blank? || zip.day_light_saving.blank?
 
       data[zip.zip_code] ||= {}
-      data[zip.zip_code][:tz] ||= Ziptz::TZ_INFO[zip.time_zone][:name]
+      data[zip.zip_code][:tz] ||= begin
+        if zip.state == 'AZ' && zip.day_light_saving == 'N'
+          'America/Arizona'
+        else
+          Ziptz::TZ_INFO[zip.time_zone][:name]
+        end
+      end
       data[zip.zip_code][:dst] ||= zip.day_light_saving
     end
     spinner.update message: "Retrieving zip codes from database (#{data.size} records)"
