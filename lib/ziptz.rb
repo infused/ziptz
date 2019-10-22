@@ -53,7 +53,7 @@ class Ziptz
   end
 
   def zips_by_code(tz_code)
-    tz.select { |_, v| v.match /#{tz_code}/i }.keys.sort
+    tz.select { |_, v| v.match(/#{tz_code}/i) }.keys.sort
   end
 
   def time_zone_info(zip)
