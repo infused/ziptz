@@ -29,15 +29,27 @@ RSpec.describe Ziptz do
     end
   end
 
-  describe '#time_zone_uses_dst?' do
+  describe '#time_zone_name' do
     context 'when given a 5-digit zipcode' do
       it 'returns the time zone number' do
         expect(ziptz.time_zone_name('97034')).to eq 'America/Los_Angeles'
       end
     end
+
+    context 'when given a 9-digit zipcode' do
+      it 'returns the time zone number' do
+        expect(ziptz.time_zone_name('97034-1234')).to eq 'America/Los_Angeles'
+      end
+    end
+
+    context 'when there is no matching zipcode' do
+      it 'returns nil' do
+        expect(ziptz.time_zone_name('xyz')).to be_nil
+      end
+    end
   end
 
-  describe '#time_zone_offset' do
+  describe '#time_zone_uses_dst?' do
     context 'when given a 5-digit zipcode' do
       it 'returns a boolean' do
         expect(ziptz.time_zone_uses_dst?('97034')).to eq true
@@ -49,6 +61,26 @@ RSpec.describe Ziptz do
       it 'returns a boolean' do
         expect(ziptz.time_zone_uses_dst?('97034-1234')).to eq true
         expect(ziptz.time_zone_uses_dst?('85004-1234')).to eq false
+      end
+    end
+
+    context 'when there is no matching zipcode' do
+      it 'returns nil' do
+        expect(ziptz.time_zone_uses_dst?('xyz')).to be_nil
+      end
+    end
+  end
+
+  describe '#time_zone_offset' do
+    context 'when given a 5-digit zipcode' do
+      it 'returns the time zone number' do
+        expect(ziptz.time_zone_offset('97034')).to eq(-8)
+      end
+    end
+
+    context 'when given a 9-digit zipcode' do
+      it 'returns the time zone number' do
+        expect(ziptz.time_zone_offset('97034-1234')).to eq(-8)
       end
     end
 

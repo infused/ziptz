@@ -26,7 +26,9 @@ class ZipCode < ActiveRecord::Base
       data[zip.zip_code] ||= {}
       data[zip.zip_code][:tz] ||= begin
         if zip.state == 'AZ' && zip.day_light_saving == 'N'
-          'America/Arizona'
+          'America/Phoenix'
+        elsif zip.state == 'AK' && zip.time_zone == '10'
+          'America/Adak'
         else
           Ziptz::TZ_INFO[zip.time_zone][:name]
         end

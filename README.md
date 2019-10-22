@@ -43,8 +43,10 @@ Get all the zip codes in a time zone:
 * "America/New_York" UTC -05:00
 * "America/Chicago" UTC -06:00
 * "America/Denver" UTC -07:00
+* "America/Phoenix" UTC -07:00
 * "America/Los_Angeles" UTC -08:00
 * "America/Anchorage" UTC -09:00
+* "America/Adak" UTC -10:00
 * "Pacific/Honolulu" UTC -10:00
 * "Pacific/Pago_Pago" UTC -11:00
 * "Pacific/Majuro" UTC +12:00
@@ -65,7 +67,7 @@ Time zone names now reflect standard tz-database names.
 | Central | America/Chicago |
 | Mountain | America/Denver |
 | Pacific | America/Los_Angeles |
-| Hawaii-Aleutian Islands | Pacific/Honolulu |
+| Hawaii-Aleutian Islands | Pacific/Honolulu or America/Adak |
 | American Samoa | Pacific/Pago_Pago |
 | Marshall Islands | Pacific/Majuro |
 | Guam | Pacific/Guam |

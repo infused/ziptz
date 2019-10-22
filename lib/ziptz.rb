@@ -16,7 +16,9 @@ class Ziptz
     '13' => {name: 'Pacific/Majuro', offset: 12},
     '14' => {name: 'Pacific/Guam', offset: 10},
     '15' => {name: 'Pacific/Palau', offset: 9},
-    '16' => {name: 'Pacific/Pohnpei', offset: 11}
+    '16' => {name: 'Pacific/Pohnpei', offset: 11},
+    'AZ' => {name: 'America/Phoenix', offset: -7},
+    'AD' => {name: 'America/Adak', offset: -10}
   }.freeze
 
   def time_zone_name(zip)
@@ -55,7 +57,7 @@ class Ziptz
   end
 
   def time_zone_info(zip)
-    TZ_INFO[get_time_zone(zip)]
+    TZ_INFO.values.detect { |v| v[:name] == get_time_zone(zip) }
   end
 
   def get_time_zone(zip)
