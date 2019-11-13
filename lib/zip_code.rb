@@ -20,7 +20,7 @@ class ZipCode < ActiveRecord::Base
     spinner = TTY::Spinner.new('[:spinner] :message')
     spinner.update message: 'Retrieving zip codes from database'
     data = {}
-    ZipCode.find_each do |zip|
+    ZipCode.distinct(:ZipCode).find_each do |zip|
       next if zip.time_zone.blank? || zip.day_light_saving.blank?
 
       data[zip.zip_code] ||= {}
