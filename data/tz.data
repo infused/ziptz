@@ -3209,7 +3209,6 @@
 09046=APO/FPO (time zone unknown)
 09049=APO/FPO (time zone unknown)
 09053=APO/FPO (time zone unknown)
-09054=APO/FPO (time zone unknown)
 09055=APO/FPO (time zone unknown)
 09060=APO/FPO (time zone unknown)
 09067=APO/FPO (time zone unknown)
@@ -3245,6 +3244,7 @@
 09175=APO/FPO (time zone unknown)
 09176=APO/FPO (time zone unknown)
 09177=APO/FPO (time zone unknown)
+09178=APO/FPO (time zone unknown)
 09180=APO/FPO (time zone unknown)
 09186=APO/FPO (time zone unknown)
 09203=APO/FPO (time zone unknown)
@@ -3269,6 +3269,7 @@
 09278=APO/FPO (time zone unknown)
 09279=APO/FPO (time zone unknown)
 09283=APO/FPO (time zone unknown)
+09285=APO/FPO (time zone unknown)
 09289=APO/FPO (time zone unknown)
 09290=APO/FPO (time zone unknown)
 09301=APO/FPO (time zone unknown)
@@ -7626,8 +7627,6 @@
 19085=America/New_York
 19086=America/New_York
 19087=America/New_York
-19088=America/New_York
-19089=America/New_York
 19090=America/New_York
 19091=America/New_York
 19092=America/New_York
@@ -17325,7 +17324,6 @@
 40361=America/New_York
 40362=America/New_York
 40363=America/New_York
-40366=America/New_York
 40370=America/New_York
 40371=America/New_York
 40372=America/New_York
@@ -23746,7 +23744,6 @@
 55389=America/Chicago
 55390=America/Chicago
 55391=America/Chicago
-55392=America/Chicago
 55395=America/Chicago
 55396=America/Chicago
 55397=America/Chicago
@@ -39988,7 +39985,6 @@
 96534=APO/FPO (time zone unknown)
 96535=APO/FPO (time zone unknown)
 96537=APO/FPO (time zone unknown)
-96538=APO/FPO (time zone unknown)
 96539=APO/FPO (time zone unknown)
 96540=APO/FPO (time zone unknown)
 96542=APO/FPO (time zone unknown)
