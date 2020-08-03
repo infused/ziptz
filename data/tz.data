@@ -2412,9 +2412,6 @@
 06811=America/New_York
 06812=America/New_York
 06813=America/New_York
-06814=America/New_York
-06816=America/New_York
-06817=America/New_York
 06820=America/New_York
 06824=America/New_York
 06825=America/New_York
@@ -3282,7 +3279,6 @@
 09305=APO/FPO (time zone unknown)
 09306=APO/FPO (time zone unknown)
 09307=APO/FPO (time zone unknown)
-09308=APO/FPO (time zone unknown)
 09309=APO/FPO (time zone unknown)
 09310=APO/FPO (time zone unknown)
 09311=APO/FPO (time zone unknown)
@@ -24530,6 +24526,7 @@
 56968=America/New_York
 56969=America/New_York
 56970=America/New_York
+56971=America/New_York
 56972=America/New_York
 56998=America/New_York
 56999=America/New_York
