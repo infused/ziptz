@@ -3313,6 +3313,7 @@
 09381=APO/FPO (time zone unknown)
 09401=APO/FPO (time zone unknown)
 09403=APO/FPO (time zone unknown)
+09410=APO/FPO (time zone unknown)
 09421=APO/FPO (time zone unknown)
 09447=APO/FPO (time zone unknown)
 09454=APO/FPO (time zone unknown)
@@ -13183,7 +13184,6 @@
 31136=America/New_York
 31139=America/New_York
 31141=America/New_York
-31144=America/New_York
 31145=America/New_York
 31146=America/New_York
 31150=America/New_York
