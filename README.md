@@ -56,6 +56,11 @@ Get all the zip codes in a time zone:
 
 <em>Note that APO/FPO zip codes will not return a known time zone offset.</em>
 
+## Want Better Data?
+
+I also sell an enhanced version of this dataset, which supports 3 times as many local IANA time zones.
+Please see my [ZIP Code Time Zones](https://us-west-2.console.aws.amazon.com/dataexchange/home#/products/prodview-4vcapflqwntdw) product on AWS Data Exchange to subscribe.
+
 ## Version 2 breaking changes
 
 Time zone names now reflect standard tz-database names.
