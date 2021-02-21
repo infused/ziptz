@@ -4,7 +4,6 @@ class Ziptz
   VERSION = '2.1.14'.freeze
 
   TZ_INFO = [
-    {name: 'APO/FPO (time zone unknown)', offset: 0},
     {name: 'America/Puerto_Rico', offset: -4},
     {name: 'America/New_York', offset: -5},
     {name: 'America/Chicago', offset: -6},
