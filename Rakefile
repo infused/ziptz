@@ -16,9 +16,3 @@ desc 'Open an irb session preloaded with this library'
 task :console do
   sh 'irb -r rubygems -I lib -r ziptz.rb'
 end
-
-desc 'Create ziptz db from zipcodes database'
-task :create_ziptz do
-  require 'zip_code'
-  ZipCode.import
-end
