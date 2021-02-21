@@ -3,23 +3,23 @@ require 'yaml'
 class Ziptz
   VERSION = '2.1.14'.freeze
 
-  TZ_INFO = {
-    '0' => {name: 'APO/FPO (time zone unknown)', offset: 0},
-    '4' => {name: 'America/Puerto_Rico', offset: -4},
-    '5' => {name: 'America/New_York', offset: -5},
-    '6' => {name: 'America/Chicago', offset: -6},
-    '7' => {name: 'America/Denver', offset: -7},
-    '8' => {name: 'America/Los_Angeles', offset: -8},
-    '9' => {name: 'America/Anchorage', offset: -9},
-    '10' => {name: 'Pacific/Honolulu', offset: -10},
-    '11' => {name: 'Pacific/Pago_Pago', offset: -11},
-    '13' => {name: 'Pacific/Majuro', offset: 12},
-    '14' => {name: 'Pacific/Guam', offset: 10},
-    '15' => {name: 'Pacific/Palau', offset: 9},
-    '16' => {name: 'Pacific/Pohnpei', offset: 11},
-    'AZ' => {name: 'America/Phoenix', offset: -7},
-    'AD' => {name: 'America/Adak', offset: -10}
-  }.freeze
+  TZ_INFO = [
+    {name: 'APO/FPO (time zone unknown)', offset: 0},
+    {name: 'America/Puerto_Rico', offset: -4},
+    {name: 'America/New_York', offset: -5},
+    {name: 'America/Chicago', offset: -6},
+    {name: 'America/Denver', offset: -7},
+    {name: 'America/Los_Angeles', offset: -8},
+    {name: 'America/Anchorage', offset: -9},
+    {name: 'Pacific/Honolulu', offset: -10},
+    {name: 'Pacific/Pago_Pago', offset: -11},
+    {name: 'Pacific/Majuro', offset: 12},
+    {name: 'Pacific/Guam', offset: 10},
+    {name: 'Pacific/Palau', offset: 9},
+    {name: 'Pacific/Pohnpei', offset: 11},
+    {name: 'America/Phoenix', offset: -7},
+    {name: 'America/Adak', offset: -10}
+  ].freeze
 
   def time_zone_name(zip)
     get_time_zone(zip)
@@ -57,7 +57,7 @@ class Ziptz
   end
 
   def time_zone_info(zip)
-    TZ_INFO.values.detect { |v| v[:name] == get_time_zone(zip) }
+    TZ_INFO.detect { |v| v[:name] == get_time_zone(zip) }
   end
 
   def get_time_zone(zip)
