@@ -34,7 +34,7 @@ Determine if the ZIP code uses Daylight Saving Time:
 
 Get all the zip codes in a time zone:
 
-    z.zips('Pacific/Pago_Pago') #=> ["96799", "96941", "96942", "96943", "96944"]
+    z.zips('Pacific/Chuuk') #=> ["96942", "96943"]
 
 
 ## Supported Time Zones
