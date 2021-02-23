@@ -8,6 +8,12 @@ Get time zone, daylight saving time, and base offset for any US ZIP code.
 
 <i>ZIP codes are up to date as of <b>February 2021</b>.</i>
 
+## Compatibility
+
+Ziptz is tested to work with the following versions of Ruby:
+
+* Ruby 2.3.x, 2.4.x, 2.5.x, 2.6.x, 2.7.x, 3.0.x, and TruffleRuby
+
 ## Installation
 
 Add the gem to your Gemfile:
