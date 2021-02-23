@@ -4,7 +4,7 @@
 [![Total Downloads](https://img.shields.io/gem/dt/ziptz.svg)](https://rubygems.org/gems/ziptz/)
 [![License](https://img.shields.io/github/license/infused/ziptz.svg)](https://github.com/infused/ziptz)
 
-Get time zone and daylight saving time for any US ZIP code.
+Get time zone, daylight saving time, and base offset for any US ZIP code.
 
 <i>ZIP codes are up to date as of <b>February 2021</b>.</i>
 
