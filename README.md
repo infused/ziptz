@@ -90,7 +90,7 @@ If you would prefer raw data instead of a gem, see my [ZIP Code Time Zones](http
 ## Version 3 breaking changes
 
 * APO, DPO, and FPO zip codes are no longer included, because they are non-geographic.
-* Time zone offset are now specified in seconds instead of hours.
+* Time zone offsets are now specified in seconds instead of hours.
 * Time zone are now more granular. The full list of time zones is:
   * America/Adak
   * America/Anchorage
