@@ -13,5 +13,4 @@ branches:
 bundler_args: --without development
 script: bundle exec rspec -fdoc
 gemfile: Gemfile.travis
-dist: trusty
 before_install: gem install bundler
