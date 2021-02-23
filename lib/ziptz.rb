@@ -2,7 +2,7 @@ require 'yaml'
 require 'zlib'
 
 class Ziptz
-  VERSION = '2.1.14'.freeze
+  VERSION = '3.0.0'.freeze
 
   def time_zone_name(zip)
     tz_info = time_zone_info(zip)
@@ -16,7 +16,7 @@ class Ziptz
     return unless tz_info
 
     tzm_info = tzm[tz_info[:tz]]
-    tzm_info[:offset] && tzm_info[:offset].to_i / 60 / 60
+    tzm_info[:offset] && tzm_info[:offset].to_i
   end
 
   def time_zone_uses_dst?(zip)

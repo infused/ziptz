@@ -74,13 +74,13 @@ RSpec.describe Ziptz do
   describe '#time_zone_offset' do
     context 'when given a 5-digit zipcode' do
       it 'returns the time zone number' do
-        expect(ziptz.time_zone_offset('97034')).to eq(-8)
+        expect(ziptz.time_zone_offset('97034')).to eq(-28800)
       end
     end
 
     context 'when given a 9-digit zipcode' do
       it 'returns the time zone number' do
-        expect(ziptz.time_zone_offset('97034-1234')).to eq(-8)
+        expect(ziptz.time_zone_offset('97034-1234')).to eq(-28800)
       end
     end
 

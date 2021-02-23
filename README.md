@@ -24,7 +24,7 @@ Get the time zone name for any ZIP code:
 
 Get the time zone offset for any ZIP code:
 
-    z.time_zone_offset('97213') #=> -8
+    z.time_zone_offset('97213') #=> -28800
 
 <em>Note that offsets do not include daylight saving time.</em>
 
@@ -39,27 +39,100 @@ Get all the zip codes in a time zone:
 
 ## Supported Time Zones
 
-* "America/Puerto_Rico" UTC -04:00
-* "America/New_York" UTC -05:00
-* "America/Chicago" UTC -06:00
-* "America/Denver" UTC -07:00
-* "America/Phoenix" UTC -07:00
-* "America/Los_Angeles" UTC -08:00
-* "America/Anchorage" UTC -09:00
-* "America/Adak" UTC -10:00
-* "Pacific/Honolulu" UTC -10:00
-* "Pacific/Pago_Pago" UTC -11:00
-* "Pacific/Majuro" UTC +12:00
-* "Pacific/Guam" UTC +10:00
-* "Pacific/Palau" UTC +09:00
-* "Pacific/Pohnpei" UTC +11:00
+* America/Adak
+* America/Anchorage
+* America/Boise
+* America/Chicago
+* America/Denver
+* America/Detroit
+* America/Indiana/Indianapolis
+* America/Indiana/Knox
+* America/Indiana/Marengo
+* America/Indiana/Petersburg
+* America/Indiana/Tell_City
+* America/Indiana/Vevay
+* America/Indiana/Vincennes
+* America/Indiana/Winamac
+* America/Juneau
+* America/Kentucky/Louisville
+* America/Kentucky/Monticello
+* America/Los_Angeles
+* America/Menominee
+* America/Metlakatla
+* America/New_York
+* America/Nome
+* America/North_Dakota/Beulah
+* America/North_Dakota/Center
+* America/North_Dakota/New_Salem
+* America/Phoenix
+* America/Puerto_Rico
+* America/Sitka
+* America/St_Thomas
+* America/Yakutat
+* Pacific/Chuuk
+* Pacific/Guam
+* Pacific/Honolulu
+* Pacific/Kosrae
+* Pacific/Kwajalein
+* Pacific/Majuro
+* Pacific/Pago_Pago
+* Pacific/Palau
+* Pacific/Pohnpei
+* Pacific/Saipan
+* Pacific/Wake
 
 <em>Note that APO/FPO zip codes will not return a known time zone offset.</em>
 
-## Want Better Data?
+## Prefer raw data?
 
-I also sell an enhanced version of this dataset, which supports 3 times as many local IANA time zones.
-Please see my [ZIP Code Time Zones](https://us-west-2.console.aws.amazon.com/dataexchange/home#/products/prodview-4vcapflqwntdw) product on AWS Data Exchange to subscribe.
+If you would prefer raw data instead of a gem, see my [ZIP Code Time Zones](https://us-west-2.console.aws.amazon.com/dataexchange/home#/products/prodview-4vcapflqwntdw) product on AWS Data Exchange to subscribe.
+
+## Version 3 breaking changes
+
+* APO, DPO, and FPO zip codes are no longer included, because they are non-geographic.
+* Time zone offset are now specified in seconds instead of hours.
+* Time zone are now more granular. The full list of time zones is:
+  * America/Adak
+  * America/Anchorage
+  * America/Boise
+  * America/Chicago
+  * America/Denver
+  * America/Detroit
+  * America/Indiana/Indianapolis
+  * America/Indiana/Knox
+  * America/Indiana/Marengo
+  * America/Indiana/Petersburg
+  * America/Indiana/Tell_City
+  * America/Indiana/Vevay
+  * America/Indiana/Vincennes
+  * America/Indiana/Winamac
+  * America/Juneau
+  * America/Kentucky/Louisville
+  * America/Kentucky/Monticello
+  * America/Los_Angeles
+  * America/Menominee
+  * America/Metlakatla
+  * America/New_York
+  * America/Nome
+  * America/North_Dakota/Beulah
+  * America/North_Dakota/Center
+  * America/North_Dakota/New_Salem
+  * America/Phoenix
+  * America/Puerto_Rico
+  * America/Sitka
+  * America/St_Thomas
+  * America/Yakutat
+  * Pacific/Chuuk
+  * Pacific/Guam
+  * Pacific/Honolulu
+  * Pacific/Kosrae
+  * Pacific/Kwajalein
+  * Pacific/Majuro
+  * Pacific/Pago_Pago
+  * Pacific/Palau
+  * Pacific/Pohnpei
+  * Pacific/Saipan
+  * Pacific/Wake
 
 ## Version 2 breaking changes
 
@@ -81,7 +154,7 @@ Time zone names now reflect standard tz-database names.
 
 ## License
 
-  Copyright (c) 2015-2020 Keith Morrison <<keithm@infused.org>>
+  Copyright (c) 2015-2021 Keith Morrison <<keithm@infused.org>>
 
   Permission is hereby granted, free of charge, to any person
   obtaining a copy of this software and associated documentation
