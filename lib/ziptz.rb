@@ -57,14 +57,16 @@ class Ziptz
   end
 
   def load_tz_data
-    File.foreach(tz_data_path).with_object({}) do |line, data|
+    uncompressed = Zlib::Inflate.inflate(File.read(tz_data_path, encoding: 'ASCII-8BIT'))
+    uncompressed.each_line.with_object({}) do |line, data|
       zip, tz, dst = line.strip.split(':')
       data[zip] = {tz: tz, dst: dst == '1'}
     end
   end
 
   def load_tzm_data
-    File.foreach(tzm_data_path).with_object({}) do |line, data|
+    uncompressed = Zlib::Inflate.inflate(File.read(tzm_data_path, encoding: 'ASCII-8BIT'))
+    uncompressed.each_line.with_object({}) do |line, data|
       tz, offset = line.strip.split(':')
       data[tz] = {offset: offset}
     end
