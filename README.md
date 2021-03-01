@@ -6,7 +6,7 @@
 
 Get time zone, daylight saving time, and base offset for any US ZIP code.
 
-<i>ZIP codes are up to date as of <b>February 2021</b>.</i>
+<i>ZIP codes are up to date as of <b>March 2021</b>.</i>
 
 ## Compatibility
 
