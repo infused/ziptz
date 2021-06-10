@@ -2,7 +2,7 @@ require 'yaml'
 require 'zlib'
 
 class Ziptz
-  VERSION = '3.0.3'.freeze
+  VERSION = '3.0.4'.freeze
 
   def time_zone_name(zip)
     tz_info = time_zone_info(zip)
