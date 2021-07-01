@@ -2,7 +2,7 @@ require 'yaml'
 require 'zlib'
 
 class Ziptz
-  VERSION = '3.0.4'.freeze
+  VERSION = '3.0.5'.freeze
 
   def time_zone_name(zip)
     tz_info = time_zone_info(zip)
@@ -59,7 +59,7 @@ class Ziptz
   def load_tz_data
     uncompressed = Zlib::Inflate.inflate(File.read(tz_data_path, encoding: 'ASCII-8BIT'))
     uncompressed.each_line.with_object({}) do |line, data|
-      zip, tz, dst = line.strip.split(':')
+      zip, tz, dst = line.strip.split('|')
       data[zip] = {tz: tz, dst: dst == '1'}
     end
   end
@@ -67,7 +67,7 @@ class Ziptz
   def load_tzm_data
     uncompressed = Zlib::Inflate.inflate(File.read(tzm_data_path, encoding: 'ASCII-8BIT'))
     uncompressed.each_line.with_object({}) do |line, data|
-      tz, offset = line.strip.split(':')
+      tz, offset = line.strip.split('|')
       data[tz] = {offset: offset}
     end
   end
