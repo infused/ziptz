@@ -1,6 +1,6 @@
 # Ziptz
 [![Version](http://img.shields.io/gem/v/ziptz.svg?style=flat)](https://rubygems.org/gems/ziptz)
-[![Build Status](http://img.shields.io/travis/infused/ziptz/master.svg?style=flat)](http://travis-ci.com/infused/ziptz)
+[![Build Status](https://github.com/infused/ziptz/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/infused/ziptz/actions/workflows/build.yml)
 [![Total Downloads](https://img.shields.io/gem/dt/ziptz.svg)](https://rubygems.org/gems/ziptz/)
 [![License](https://img.shields.io/github/license/infused/ziptz.svg)](https://github.com/infused/ziptz)
 
@@ -12,7 +12,7 @@ Get time zone, daylight saving time, and base offset for any US ZIP code.
 
 Ziptz is tested to work with the following versions of Ruby:
 
-* Ruby 2.3.x, 2.4.x, 2.5.x, 2.6.x, 2.7.x, 3.x, and TruffleRuby
+* Ruby 2.3.x, 2.4.x, 2.5.x, 2.6.x, 2.7.x, 3.x
 
 ## Installation
 
