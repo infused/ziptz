@@ -4,6 +4,10 @@ require 'zlib'
 class Ziptz
   VERSION = '3.0.9'.freeze
 
+  def self.instance
+    @instance ||= new
+  end
+
   def time_zone_name(zip)
     tz_info = time_zone_info(zip)
     return unless tz_info
