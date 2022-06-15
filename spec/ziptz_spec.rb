@@ -106,4 +106,18 @@ RSpec.describe Ziptz do
       end
     end
   end
+
+  describe '#instance' do
+    context 'when given a 5 digit zip code' do
+      it 'matches the behavior of Ziptz.new' do
+        expect(Ziptz.instance.time_zone_name('97034')).to eq ziptz.time_zone_name('97034')
+      end
+    end
+
+    context 'when called twice' do
+      it 'returns identical instances' do
+        expect(Ziptz.instance.object_id).to eq Ziptz.instance.object_id
+      end
+    end
+  end
 end
