@@ -2,7 +2,7 @@ require 'yaml'
 require 'zlib'
 
 class Ziptz
-  VERSION = '3.0.10'.freeze
+  VERSION = '3.0.11'.freeze
 
   def self.instance
     @instance ||= new
