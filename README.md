@@ -160,7 +160,7 @@ Time zone names now reflect standard tz-database names.
 
 ## License
 
-  Copyright (c) 2015-2022 Keith Morrison <<keithm@infused.org>>
+  Copyright (c) 2015-2023 Keith Morrison <<keithm@infused.org>>
 
   Permission is hereby granted, free of charge, to any person
   obtaining a copy of this software and associated documentation
