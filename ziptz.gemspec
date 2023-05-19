@@ -17,4 +17,5 @@ Gem::Specification.new do |s|
   s.test_files = Dir.glob('spec/**/*_spec.rb')
   s.require_paths = ['lib']
   s.required_ruby_version = '>= 2.0.0'
+  s.metadata['rubygems_mfa_required'] = 'true'
 end
