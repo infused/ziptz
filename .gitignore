@@ -2,3 +2,5 @@
 database.yml
 Gemfile.lock
 .rspec
+/*.gem
+
