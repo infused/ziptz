@@ -44,12 +44,19 @@ class Ziptz
     @tzm ||= load_tzm_data
   end
 
+  def lazy_tz
+    @lazy_tz ||= lazy_load_tz_data
+  end
+
   def tz
     @tz ||= load_tz_data
   end
 
   def time_zone_info(zip)
-    tz[zip.to_s.slice(0, 5)]
+    if (data = lazy_tz[zip.to_s.slice(0, 5)])
+      _, tz, dst = data.strip.split('|')
+      {tz: tz, dst: dst == '1'}
+    end
   end
 
   def tzm_data_path
@@ -58,6 +65,13 @@ class Ziptz
 
   def tz_data_path
     File.join(File.dirname(__FILE__), '..', 'data', 'tz.data')
+  end
+
+  def lazy_load_tz_data
+    uncompressed = Zlib::Inflate.inflate(File.read(tz_data_path, encoding: 'ASCII-8BIT'))
+    uncompressed.each_line.with_object({}) do |line, data|
+      data[line.slice(0, 5)] = line
+    end
   end
 
   def load_tz_data
