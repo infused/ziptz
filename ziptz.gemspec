@@ -1,4 +1,6 @@
-require File.expand_path('lib/ziptz')
+lib = File.expand_path('lib', __dir__)
+$LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
+require 'version'
 
 Gem::Specification.new do |s|
   s.name = 'ziptz'
@@ -17,4 +19,5 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.required_ruby_version = '>= 2.0.0'
   s.metadata['rubygems_mfa_required'] = 'true'
+  s.add_dependency 'sqlite3'
 end

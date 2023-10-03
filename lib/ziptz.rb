@@ -1,37 +1,42 @@
-require 'yaml'
-require 'zlib'
+require 'sqlite3'
+require 'version'
 
 class Ziptz
-  VERSION = '3.0.18'.freeze
-
   def self.instance
     @instance ||= new
   end
 
-  def time_zone_name(zip)
-    tz_info = time_zone_info(zip)
-    return unless tz_info
+  def db
+    @db ||= begin
+      db = SQLite3::Database.open(tz_data_path)
+      db.results_as_hash = true
+      db
+    end
+  end
 
-    tz_info[:tz]
+  def time_zone_name(zip)
+    time_zone_info(zip)&.dig('time_zone')
   end
 
   def time_zone_offset(zip)
-    tz_info = time_zone_info(zip)
-    return unless tz_info
-
-    tzm_info = tzm[tz_info[:tz]]
-    tzm_info[:offset] && tzm_info[:offset].to_i
+    time_zone_info(zip)&.dig('offset')
   end
 
   def time_zone_uses_dst?(zip)
     tz_info = time_zone_info(zip)
     return unless tz_info
 
-    tz_info[:dst]
+    tz_info['observes_dst'] == 1
   end
 
   def zips(tz_name)
-    tz.select { |_, v| v[:tz].downcase == tz_name.downcase }.keys
+    sql = <<-SQL
+      select zip_code
+      from zip_codes
+      where time_zone = ?
+      order by zip_code
+    SQL
+    db.execute(sql, tz_name).map { |row| row['zip_code'] }
   end
 
   def inspect
@@ -40,53 +45,11 @@ class Ziptz
 
   protected
 
-  def tzm
-    @tzm ||= load_tzm_data
-  end
-
-  def lazy_tz
-    @lazy_tz ||= lazy_load_tz_data
-  end
-
-  def tz
-    @tz ||= load_tz_data
-  end
-
   def time_zone_info(zip)
-    if (data = lazy_tz[zip.to_s.slice(0, 5)])
-      _, tz, dst = data.strip.split('|')
-      {tz: tz, dst: dst == '1'}
-    end
-  end
-
-  def tzm_data_path
-    File.join(File.dirname(__FILE__), '..', 'data', 'tzm.data')
+    db.get_first_row('select * from zip_codes where zip_code = ? limit 1', zip[0, 5])
   end
 
   def tz_data_path
-    File.join(File.dirname(__FILE__), '..', 'data', 'tz.data')
-  end
-
-  def lazy_load_tz_data
-    uncompressed = Zlib::Inflate.inflate(File.read(tz_data_path, encoding: 'ASCII-8BIT'))
-    uncompressed.each_line.with_object({}) do |line, data|
-      data[line.slice(0, 5)] = line
-    end
-  end
-
-  def load_tz_data
-    uncompressed = Zlib::Inflate.inflate(File.read(tz_data_path, encoding: 'ASCII-8BIT'))
-    uncompressed.each_line.with_object({}) do |line, data|
-      zip, tz, dst = line.strip.split('|')
-      data[zip] = {tz: tz, dst: dst == '1'}
-    end
-  end
-
-  def load_tzm_data
-    uncompressed = Zlib::Inflate.inflate(File.read(tzm_data_path, encoding: 'ASCII-8BIT'))
-    uncompressed.each_line.with_object({}) do |line, data|
-      tz, offset = line.strip.split('|')
-      data[tz] = {offset: offset}
-    end
+    File.join(File.dirname(__FILE__), '..', 'data', 'tz.db')
   end
 end
