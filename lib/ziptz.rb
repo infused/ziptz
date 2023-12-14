@@ -46,6 +46,8 @@ class Ziptz
   protected
 
   def time_zone_info(zip)
+    return unless zip
+
     db.get_first_row('select * from zip_codes where zip_code = ? limit 1', zip[0, 5])
   end
 
