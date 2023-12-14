@@ -2,15 +2,30 @@ require 'sqlite3'
 require 'version'
 
 class Ziptz
+
+  def initialize(mode = :file)
+    @mode = mode
+  end
+
   def self.instance
     @instance ||= new
   end
 
   def db
     @db ||= begin
-      db = SQLite3::Database.open(tz_data_path)
-      db.results_as_hash = true
-      db
+      if @mode == :memory
+        db = SQLite3::Database.new(':memory:')
+        fdb = SQLite3::Database.open(tz_data_path)
+        backup = SQLite3::Backup.new(db, 'main', fdb, 'main')
+        backup.step(-1)
+        backup.finish
+        db.results_as_hash = true
+        db
+      else
+        db = SQLite3::Database.open(tz_data_path)
+        db.results_as_hash = true
+        db
+      end
     end
   end
 
