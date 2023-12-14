@@ -27,6 +27,12 @@ RSpec.describe Ziptz do
         expect(ziptz.time_zone_name('xyz')).to be_nil
       end
     end
+
+    context 'when nil is passed' do
+      it 'returns nil' do
+        expect(ziptz.time_zone_name(nil)).to be_nil
+      end
+    end
   end
 
   describe '#time_zone_name' do
