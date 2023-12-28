@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ['README.md', 'LICENSE']
   s.files = Dir['README.md', 'LICENSE', '{data,lib,spec}/**/*', 'ziptz.gemspec']
   s.require_paths = ['lib']
-  s.required_ruby_version = '>= 2.0.0'
+  s.required_ruby_version = '>= 3.1.0'
   s.metadata['rubygems_mfa_required'] = 'true'
   s.add_dependency 'sqlite3', '~> 1.6'
 end

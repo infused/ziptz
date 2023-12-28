@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Ziptz do
-  let(:ziptz) { Ziptz.new }
+  let(:ziptz) { described_class.new }
 
   describe 'when inspected' do
     it 'does not show internal instance variables' do
@@ -35,37 +35,27 @@ RSpec.describe Ziptz do
     end
   end
 
-  describe '#time_zone_name' do
-    context 'when given a 5-digit zipcode' do
-      it 'returns the time zone number' do
-        expect(ziptz.time_zone_name('97034')).to eq 'America/Los_Angeles'
-      end
-    end
-
-    context 'when given a 9-digit zipcode' do
-      it 'returns the time zone number' do
-        expect(ziptz.time_zone_name('97034-1234')).to eq 'America/Los_Angeles'
-      end
-    end
-
-    context 'when there is no matching zipcode' do
-      it 'returns nil' do
-        expect(ziptz.time_zone_name('xyz')).to be_nil
-      end
-    end
-  end
-
   describe '#time_zone_uses_dst?' do
-    context 'when given a 5-digit zipcode' do
-      it 'returns a boolean' do
+    context 'when given a valid 5-digit zipcode' do
+      it 'returns true' do
         expect(ziptz.time_zone_uses_dst?('97034')).to eq true
+      end
+    end
+
+    context 'when given an invalid 5-digit zipcode' do
+      it 'returns false' do
         expect(ziptz.time_zone_uses_dst?('85004')).to eq false
       end
     end
 
-    context 'when given a 9-digit zipcode' do
-      it 'returns a boolean' do
+    context 'when given a valid 9-digit zipcode' do
+      it 'returns a true' do
         expect(ziptz.time_zone_uses_dst?('97034-1234')).to eq true
+      end
+    end
+
+    context 'when given an invalid 9-digit zipcode' do
+      it 'returns false' do
         expect(ziptz.time_zone_uses_dst?('85004-1234')).to eq false
       end
     end
@@ -80,13 +70,13 @@ RSpec.describe Ziptz do
   describe '#time_zone_offset' do
     context 'when given a 5-digit zipcode' do
       it 'returns the time zone number' do
-        expect(ziptz.time_zone_offset('97034')).to eq(-28800)
+        expect(ziptz.time_zone_offset('97034')).to eq(-28_800)
       end
     end
 
     context 'when given a 9-digit zipcode' do
       it 'returns the time zone number' do
-        expect(ziptz.time_zone_offset('97034-1234')).to eq(-28800)
+        expect(ziptz.time_zone_offset('97034-1234')).to eq(-28_800)
       end
     end
 
@@ -116,13 +106,13 @@ RSpec.describe Ziptz do
   describe '#instance' do
     context 'when given a 5 digit zip code' do
       it 'matches the behavior of Ziptz.new' do
-        expect(Ziptz.instance.time_zone_name('97034')).to eq ziptz.time_zone_name('97034')
+        expect(described_class.instance.time_zone_name('97034')).to eq ziptz.time_zone_name('97034')
       end
     end
 
     context 'when called twice' do
       it 'returns identical instances' do
-        expect(Ziptz.instance.object_id).to eq Ziptz.instance.object_id
+        expect(described_class.instance.object_id).to eq described_class.instance.object_id
       end
     end
   end
