@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.required_ruby_version = '>= 3.1.0'
   s.metadata['rubygems_mfa_required'] = 'true'
-  s.add_dependency 'sqlite3', '~> 1.6'
+  s.add_dependency 'sqlite3', '~> 2.0'
 end
