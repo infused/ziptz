@@ -20,11 +20,21 @@ Add the gem to your Gemfile:
 
     gem 'ziptz'
 
+## Data File Requirement
+
+Starting with version 6.0.0, you'll need to supply your own time zone SQLite database file. You can subscribe to the required dataset here:
+[ZIP Code Time Zones Dataset](https://www.infused-data.com/zip-code-time-zones/)
+
 ## Usage
+
+First, initialize Ziptz with the path to your time zone database file:
+
+    z = Ziptz.new('/path/to/your/tz.db')
+    # or using keyword argument
+    z = Ziptz.new(db: '/path/to/your/tz.db')
 
 Get the time zone name for any ZIP code:
 
-    z = Ziptz.new
     z.time_zone_name('97213') #=> "America/Los_Angeles"
 
 Get the time zone offset for any ZIP code:

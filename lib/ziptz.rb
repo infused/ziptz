@@ -2,9 +2,15 @@ require 'sqlite3'
 require 'version'
 
 class Ziptz
+  def initialize(*args, db: nil)
+    @db_path = args[0] || db
+    raise ArgumentError, 'Database path is required' if @db_path.nil? || @db_path.empty?
+    raise ArgumentError, 'Database file does not exist' unless File.exist?(@db_path)
+  end
+
   def db
     Thread.current[:ziptz_db] ||= begin
-      db = SQLite3::Database.open(tz_data_path)
+      db = SQLite3::Database.open(@db_path)
       db.results_as_hash = true
       db
     end
@@ -45,9 +51,5 @@ class Ziptz
     return unless zip
 
     db.get_first_row('select * from zip_codes where zip_code = ? limit 1', zip[0, 5])
-  end
-
-  def tz_data_path
-    File.join(File.dirname(__FILE__), '..', 'data', 'tz.db')
   end
 end
