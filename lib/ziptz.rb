@@ -3,11 +3,11 @@ require 'version'
 
 class Ziptz
   def self.instance
-    @instance ||= new
+    Thread.current[:ziptz_instance] ||= new
   end
 
   def db
-    @db ||= begin
+    Thread.current[:ziptz_db] ||= begin
       db = SQLite3::Database.open(tz_data_path)
       db.results_as_hash = true
       db
