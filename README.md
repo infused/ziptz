@@ -1,6 +1,6 @@
 # Ziptz
 [![Version](http://img.shields.io/gem/v/ziptz.svg?style=flat)](https://rubygems.org/gems/ziptz)
-[![Build Status](https://github.com/infused/ziptz/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/infused/ziptz/actions/workflows/build.yml)
+[![Build Status](https://github.com/infused/ziptz/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/infused/ziptz/actions/workflows/build.yml)
 [![Total Downloads](https://img.shields.io/gem/dt/ziptz.svg)](https://rubygems.org/gems/ziptz/)
 [![License](https://img.shields.io/github/license/infused/ziptz.svg)](https://github.com/infused/ziptz)
 
