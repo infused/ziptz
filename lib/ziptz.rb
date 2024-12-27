@@ -2,10 +2,6 @@ require 'sqlite3'
 require 'version'
 
 class Ziptz
-  def self.instance
-    Thread.current[:ziptz_instance] ||= new
-  end
-
   def db
     Thread.current[:ziptz_db] ||= begin
       db = SQLite3::Database.open(tz_data_path)
