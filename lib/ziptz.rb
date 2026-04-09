@@ -4,6 +4,8 @@ require 'sqlite3'
 require 'version'
 
 class Ziptz
+  class ZipNotFound < StandardError; end
+
   def initialize(*args, db: nil)
     @db_path = args[0] || db
     raise ArgumentError, 'Database path is required' if @db_path.nil? || @db_path.empty?
@@ -19,18 +21,15 @@ class Ziptz
   end
 
   def time_zone_name(zip)
-    time_zone_info(zip)&.dig('time_zone')
+    time_zone_info(zip).dig('time_zone')
   end
 
   def time_zone_offset(zip)
-    time_zone_info(zip)&.dig('offset')
+    time_zone_info(zip).dig('offset')
   end
 
   def time_zone_uses_dst?(zip)
-    tz_info = time_zone_info(zip)
-    return unless tz_info
-
-    tz_info['observes_dst'] == 1
+    time_zone_info(zip)['observes_dst'] == 1
   end
 
   def zips(tz_name)
@@ -50,8 +49,11 @@ class Ziptz
   protected
 
   def time_zone_info(zip)
-    return unless zip
+    raise ZipNotFound, "Zip code not found: #{zip.inspect}" if zip.nil?
 
-    db.get_first_row('select * from zip_codes where zip_code = ? limit 1', zip[0, 5])
+    result = db.get_first_row('select * from zip_codes where zip_code = ? limit 1', zip[0, 5])
+    raise ZipNotFound, "Zip code not found: #{zip}" unless result
+
+    result
   end
 end

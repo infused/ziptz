@@ -26,14 +26,14 @@ RSpec.describe Ziptz do
     end
 
     context 'when there is no matching zipcode' do
-      it 'returns nil' do
-        expect(ziptz.time_zone_name('xyz')).to be_nil
+      it 'raises ZipNotFound' do
+        expect { ziptz.time_zone_name('xyz') }.to raise_error(Ziptz::ZipNotFound)
       end
     end
 
     context 'when nil is passed' do
-      it 'returns nil' do
-        expect(ziptz.time_zone_name(nil)).to be_nil
+      it 'raises ZipNotFound' do
+        expect { ziptz.time_zone_name(nil) }.to raise_error(Ziptz::ZipNotFound)
       end
     end
   end
@@ -64,8 +64,8 @@ RSpec.describe Ziptz do
     end
 
     context 'when there is no matching zipcode' do
-      it 'returns nil' do
-        expect(ziptz.time_zone_uses_dst?('xyz')).to be_nil
+      it 'raises ZipNotFound' do
+        expect { ziptz.time_zone_uses_dst?('xyz') }.to raise_error(Ziptz::ZipNotFound)
       end
     end
   end
@@ -84,8 +84,8 @@ RSpec.describe Ziptz do
     end
 
     context 'when there is no matching zipcode' do
-      it 'returns nil' do
-        expect(ziptz.time_zone_offset('xyz')).to be_nil
+      it 'raises ZipNotFound' do
+        expect { ziptz.time_zone_offset('xyz') }.to raise_error(Ziptz::ZipNotFound)
       end
     end
   end
