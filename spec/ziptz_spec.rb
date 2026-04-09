@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe Ziptz do
@@ -39,25 +41,25 @@ RSpec.describe Ziptz do
   describe '#time_zone_uses_dst?' do
     context 'when given a valid 5-digit zipcode' do
       it 'returns true' do
-        expect(ziptz.time_zone_uses_dst?('97034')).to eq true
+        expect(ziptz.time_zone_uses_dst?('97034')).to be true
       end
     end
 
     context 'when given an invalid 5-digit zipcode' do
       it 'returns false' do
-        expect(ziptz.time_zone_uses_dst?('85004')).to eq false
+        expect(ziptz.time_zone_uses_dst?('85004')).to be false
       end
     end
 
     context 'when given a valid 9-digit zipcode' do
       it 'returns a true' do
-        expect(ziptz.time_zone_uses_dst?('97034-1234')).to eq true
+        expect(ziptz.time_zone_uses_dst?('97034-1234')).to be true
       end
     end
 
     context 'when given an invalid 9-digit zipcode' do
       it 'returns false' do
-        expect(ziptz.time_zone_uses_dst?('85004-1234')).to eq false
+        expect(ziptz.time_zone_uses_dst?('85004-1234')).to be false
       end
     end
 

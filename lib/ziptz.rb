@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sqlite3'
 require 'version'
 
@@ -32,7 +34,7 @@ class Ziptz
   end
 
   def zips(tz_name)
-    sql = <<-SQL
+    sql = <<~SQL
       select zip_code
       from zip_codes
       where time_zone = ?

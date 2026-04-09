@@ -1,5 +1,6 @@
-require:
+plugins:
   - rubocop-performance
+  - rubocop-rake
   - rubocop-rspec
 
 Gemspec/RequiredRubyVersion:
@@ -11,5 +12,10 @@ RSpec/NotToNot:
 Style/Documentation:
   Enabled: false
 
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.3
+
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  Enabled: true
+  EnforcedStyle: always

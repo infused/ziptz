@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
 require 'version'
@@ -17,7 +19,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ['README.md', 'LICENSE']
   s.files = Dir['README.md', 'LICENSE', '{data,lib,spec}/**/*', 'ziptz.gemspec']
   s.require_paths = ['lib']
-  s.required_ruby_version = '>= 3.1.0'
+  s.required_ruby_version = '>= 3.3.0'
   s.metadata['rubygems_mfa_required'] = 'true'
   s.add_dependency 'sqlite3', '~> 2.0'
 end
