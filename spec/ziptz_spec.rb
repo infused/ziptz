@@ -106,6 +106,39 @@ RSpec.describe Ziptz do
     end
   end
 
+  describe 'multiple instances on the same thread' do
+    let(:other_db_path) { File.join(Dir.tmpdir, 'ziptz_other.db') }
+
+    before do
+      FileUtils.rm_f(other_db_path)
+      db = SQLite3::Database.open(other_db_path)
+      db.execute('create table zip_codes (zip_code text, time_zone text, offset integer, observes_dst integer)')
+      db.execute("insert into zip_codes values ('00001', 'Other/Zone', 0, 0)")
+      db.close
+    end
+
+    after { FileUtils.rm_f(other_db_path) }
+
+    it 'reads from its own database rather than the first instance to connect' do
+      described_class.new(db_path).time_zone_name('97034')
+
+      other = described_class.new(other_db_path)
+      expect(other.time_zone_name('00001')).to eq 'Other/Zone'
+    end
+
+    it 'does not serve rows from another instance database' do
+      described_class.new(other_db_path).time_zone_name('00001')
+
+      expect { ziptz.time_zone_name('00001') }.to raise_error(Ziptz::ZipNotFound)
+    end
+
+    it 'applies results_as_hash to every connection' do
+      described_class.new(other_db_path).time_zone_name('00001')
+
+      expect(ziptz.zips('Pacific/Pago_Pago')).to eq %w[96799]
+    end
+  end
+
   describe 'initialization' do
     it 'accepts database path as first argument' do
       expect { described_class.new(db_path) }.to_not raise_error

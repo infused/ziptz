@@ -3,6 +3,8 @@
 require 'ziptz'
 require 'yaml'
 require 'rspec'
+require 'tmpdir'
+require 'fileutils'
 
 RSpec.configure do |config|
   config.order = :random

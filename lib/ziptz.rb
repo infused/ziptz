@@ -13,7 +13,8 @@ class Ziptz
   end
 
   def db
-    Thread.current[:ziptz_db] ||= begin
+    connections = Thread.current[:ziptz_db] ||= {}
+    connections[@db_path] ||= begin
       db = SQLite3::Database.open(@db_path)
       db.results_as_hash = true
       db
