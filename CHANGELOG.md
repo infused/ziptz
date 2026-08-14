@@ -12,15 +12,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automated gem publication via
   [RubyGems trusted publishing](https://guides.rubygems.org/trusted-publishing/):
   pushing a `v*` tag builds and publishes the gem from GitHub Actions.
+- Gemspec metadata links (`source_code_uri`, `changelog_uri`,
+  `bug_tracker_uri`) and this changelog.
 
 ### Fixed
 
 - Database connections are cached per database path, so multiple `Ziptz`
   instances pointing at different databases no longer share a connection.
+- The packaged gem no longer includes the spec suite and its 2.7 MB fixture
+  database, shrinking the gem from ~2.7 MB to a few KB.
 
 ### Changed
 
 - CI now enforces RuboCop and runs tests against Ruby 3.3, 3.4, and 4.0.
+- `Ziptz::VERSION` moved from `lib/version.rb` to the conventional
+  `lib/ziptz/version.rb`.
 
 ## 6.1.0 - 2026-04-09
 

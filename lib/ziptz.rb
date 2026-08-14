@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'sqlite3'
-require 'version'
+require_relative 'ziptz/version'
 
 class Ziptz
   class ZipNotFound < StandardError; end
