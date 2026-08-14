@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database connections are cached per database path, so multiple `Ziptz`
   instances pointing at different databases no longer share a connection.
 
+### Changed
+
+- CI now enforces RuboCop and runs tests against Ruby 3.3, 3.4, and 4.0.
+
 ## 6.1.0 - 2026-04-09
 
 ### Changed
