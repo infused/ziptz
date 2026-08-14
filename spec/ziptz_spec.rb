@@ -25,6 +25,16 @@ RSpec.describe Ziptz do
       end
     end
 
+    context 'when given an integer zipcode' do
+      it 'returns the time zone number' do
+        expect(ziptz.time_zone_name(97_034)).to eq 'America/Los_Angeles'
+      end
+
+      it 'zero-pads integers to 5 digits' do
+        expect(ziptz.time_zone_name(601)).to eq 'America/Puerto_Rico'
+      end
+    end
+
     context 'when there is no matching zipcode' do
       it 'raises ZipNotFound' do
         expect { ziptz.time_zone_name('xyz') }.to raise_error(Ziptz::ZipNotFound)
@@ -139,6 +149,25 @@ RSpec.describe Ziptz do
     end
   end
 
+  describe '#close' do
+    it 'allows queries after close by reopening the connection' do
+      ziptz.time_zone_name('97034')
+      ziptz.close
+
+      expect(ziptz.time_zone_name('97034')).to eq 'America/Los_Angeles'
+    end
+
+    it 'is idempotent' do
+      ziptz.time_zone_name('97034')
+
+      expect { 2.times { ziptz.close } }.to_not raise_error
+    end
+
+    it 'can be called before any connection is opened' do
+      expect { described_class.new(db_path).close }.to_not raise_error
+    end
+  end
+
   describe 'initialization' do
     it 'accepts database path as first argument' do
       expect { described_class.new(db_path) }.to_not raise_error
@@ -148,18 +177,27 @@ RSpec.describe Ziptz do
       expect { described_class.new(db: db_path) }.to_not raise_error
     end
 
-    it 'raises an error when database path is nil' do
+    it 'raises an error when no database path is given' do
       expect { described_class.new }.to raise_error(ArgumentError, 'Database path is required')
+    end
+
+    it 'raises an error when database path keyword is nil' do
       expect { described_class.new(db: nil) }.to raise_error(ArgumentError, 'Database path is required')
     end
 
-    it 'raises an error when database path is empty' do
+    it 'raises an error when database path argument is empty' do
       expect { described_class.new('') }.to raise_error(ArgumentError, 'Database path is required')
+    end
+
+    it 'raises an error when database path keyword is empty' do
       expect { described_class.new(db: '') }.to raise_error(ArgumentError, 'Database path is required')
     end
 
-    it 'raises an error when database file does not exist' do
+    it 'raises an error when database path argument does not exist' do
       expect { described_class.new('nonexistent.db') }.to raise_error(ArgumentError, 'Database file does not exist')
+    end
+
+    it 'raises an error when database path keyword does not exist' do
       expect { described_class.new(db: 'nonexistent.db') }.to raise_error(ArgumentError, 'Database file does not exist')
     end
   end

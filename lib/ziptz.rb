@@ -6,8 +6,8 @@ require_relative 'ziptz/version'
 class Ziptz
   class ZipNotFound < StandardError; end
 
-  def initialize(*args, db: nil)
-    @db_path = args[0] || db
+  def initialize(path = nil, db: nil)
+    @db_path = path || db
     raise ArgumentError, 'Database path is required' if @db_path.nil? || @db_path.empty?
     raise ArgumentError, 'Database file does not exist' unless File.exist?(@db_path)
   end
@@ -21,12 +21,17 @@ class Ziptz
     end
   end
 
+  def close
+    Thread.current[:ziptz_db]&.delete(@db_path)&.close
+    nil
+  end
+
   def time_zone_name(zip)
-    time_zone_info(zip).dig('time_zone')
+    time_zone_info(zip)['time_zone']
   end
 
   def time_zone_offset(zip)
-    time_zone_info(zip).dig('offset')
+    time_zone_info(zip)['offset']
   end
 
   def time_zone_uses_dst?(zip)
@@ -47,12 +52,13 @@ class Ziptz
     "#<#{self.class}:#{object_id}>"
   end
 
-  protected
+  private
 
   def time_zone_info(zip)
     raise ZipNotFound, "Zip code not found: #{zip.inspect}" if zip.nil?
 
-    result = db.get_first_row('select * from zip_codes where zip_code = ? limit 1', zip[0, 5])
+    zip_code = zip.is_a?(Integer) ? format('%05d', zip) : zip.to_s[0, 5]
+    result = db.get_first_row('select * from zip_codes where zip_code = ? limit 1', zip_code)
     raise ZipNotFound, "Zip code not found: #{zip}" unless result
 
     result

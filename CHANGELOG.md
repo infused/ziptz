@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   pushing a `v*` tag builds and publishes the gem from GitHub Actions.
 - Gemspec metadata links (`source_code_uri`, `changelog_uri`,
   `bug_tracker_uri`) and this changelog.
+- Zip codes may now be passed as Integers; they are zero-padded to 5 digits
+  (`z.time_zone_name(601)` looks up `00601`). Previously an Integer raised
+  `NoMethodError`.
+- `Ziptz#close` closes the cached SQLite connection for the instance's
+  database on the current thread. Closing is idempotent and a new connection
+  is opened automatically on the next query.
 
 ### Fixed
 

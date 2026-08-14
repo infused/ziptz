@@ -37,6 +37,12 @@ Get the time zone name for any ZIP code:
 
     z.time_zone_name('97213') #=> "America/Los_Angeles"
 
+ZIP codes may be passed as strings or integers. Integers are zero-padded
+to 5 digits, and 9-digit ZIP+4 strings are truncated to their first 5 digits:
+
+    z.time_zone_name(601)          #=> "America/Puerto_Rico" (looks up 00601)
+    z.time_zone_name('97213-4704') #=> "America/Los_Angeles"
+
 Get the time zone offset for any ZIP code:
 
     z.time_zone_offset('97213') #=> -28800
@@ -50,6 +56,17 @@ Determine if the ZIP code uses Daylight Saving Time:
 Get all the zip codes in a time zone:
 
     z.zips('Pacific/Chuuk') #=> ["96942", "96943"]
+
+Lookups for unknown, invalid, or nil ZIP codes raise `Ziptz::ZipNotFound`
+(since version 6.1.0; earlier versions returned nil):
+
+    z.time_zone_name('00000') #=> raises Ziptz::ZipNotFound
+
+Database connections are opened lazily and cached per thread. Call `close`
+to close the current thread's connection; the next lookup reopens it
+automatically:
+
+    z.close
 
 
 ## Supported Time Zones
