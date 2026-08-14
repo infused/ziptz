@@ -4,18 +4,15 @@ source 'https://rubygems.org'
 gemspec
 
 group :development, :test do
-  gem 'activerecord'
   gem 'bundler'
   gem 'byebug'
   gem 'guard'
   gem 'guard-rspec'
   gem 'irb'
-  gem 'mysql2'
   gem 'rake'
   gem 'rspec'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rake'
   gem 'rubocop-rspec'
-  gem 'tty-spinner'
 end

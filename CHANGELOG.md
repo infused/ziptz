@@ -33,6 +33,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI now enforces RuboCop and runs tests against Ruby 3.3, 3.4, and 4.0.
 - `Ziptz::VERSION` moved from `lib/version.rb` to the conventional
   `lib/ziptz/version.rb`.
+- README documents the supported Rubies (3.3/3.4/4.0); copyright years
+  updated through 2026.
+
+### Removed
+
+- Leftover development dependencies from the long-removed data-import
+  pipeline (activerecord, mysql2, tty-spinner).
 
 ## 6.1.0 - 2026-04-09
 

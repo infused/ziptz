@@ -12,7 +12,7 @@ Get time zone, daylight saving time, and base offset for any US ZIP code.
 
 Ziptz is tested to work with the following versions of Ruby:
 
-* Ruby 3.1.x, 3.2.x, 3.3.x
+* Ruby 3.3.x, 3.4.x, 4.0.x
 
 ## Installation
 
@@ -186,7 +186,7 @@ Time zone names now reflect standard tz-database names.
 
 ## License
 
-  Copyright (c) 2015-2024 Keith Morrison <<keithm@infused.org>>
+  Copyright (c) 2015-2026 Keith Morrison <<keithm@infused.org>>
 
   Permission is hereby granted, free of charge, to any person
   obtaining a copy of this software and associated documentation
